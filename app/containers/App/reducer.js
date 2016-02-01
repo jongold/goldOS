@@ -1,10 +1,10 @@
-import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM } from './constants';
+import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, CLOSE_WINDOW } from './constants';
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
   authenticated: false,
   userData: {},
-  windows: [],
+  windows: ['Bookshelf', 'Podcasts', 'functional css'],
   books: [
     { title: 'Mindfulness in Plain English' },
     { title: 'The Artist\'s Way' },
@@ -37,6 +37,9 @@ function formReducer(state = initialState, action) {
       return state.set('authenticated', false);
     case SELECT_PLAYLIST_ITEM:
       return state.setIn(['podcasts', 'current'], action.data)
+    case CLOSE_WINDOW:
+      console.log(action)
+      return state.update('windows', (windows) => windows.filterNot((w) => w === action.data))
     default:
       return state;
   }

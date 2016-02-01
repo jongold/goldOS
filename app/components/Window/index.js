@@ -14,6 +14,7 @@ class TrafficLights extends Component {
         xmlns="http://www.w3.org/2000/svg"
         width="40.6px"
         height="11px"
+        onClick={this.props.onClick}
         onMouseEnter={() => this.setState({hovered: true})}
         onMouseLeave={() => this.setState({hovered: false})}
         viewBox="0 0 40.6 11">
@@ -35,11 +36,11 @@ class TrafficLights extends Component {
   }
 };
 
-const WindowTitle = ({ title }) => {
-  const cx = 'flex flex-center border-bottom border-gold px1 py1';
+const WindowTitle = ({ title, onClickClose }) => {
+  const cx = 'flex flex-center border-bottom border-gold px1 py1 js-handle';
   return (
     <div className={cx}>
-      <TrafficLights />
+      <TrafficLights onClick={() => onClickClose(title)} />
       <span className='flex-grow center bold h6' style={{marginRight: 41}}>{title}</span>
     </div>
   );
@@ -53,6 +54,11 @@ class Window extends React.Component {
         x: this.props.x || 100,
         y: this.props.y || 100,
       },
+      bounds: {
+        top: 0,
+        left: 0
+      },
+      // handle: '.js-handle',
       grid: [20, 20]
     }
 
@@ -64,7 +70,7 @@ class Window extends React.Component {
     return (
       <Draggable {...draggableProps}>
         <div className='bg-white absolute rounded-2 border border-gold gold'>
-          <WindowTitle {...this.props} />
+          <WindowTitle {...this.props} onClickClose={this.props.onClickClose} />
           <div style={contentStyle}>{ this.props.children }</div>
         </div>
       </Draggable>

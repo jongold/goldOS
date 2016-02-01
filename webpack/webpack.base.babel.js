@@ -29,8 +29,10 @@ module.exports = (options) => {
       }, {
         test: /\.html$/,
         loader: 'html-loader'
-      }
-      ]
+      }, {
+        test: /\.md$/,
+        loader: 'html!markdown'
+      }]
     },
     plugins: options.plugins.concat([
       new webpack.optimize.CommonsChunkPlugin('common.js')

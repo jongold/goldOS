@@ -46,7 +46,7 @@ class MediaPlayer extends Component {
     const currentItem = items.find((item) => (item.get('title') === current))
 
     return (
-      <Window title={title} height={240} width={260} x={this.props.x} y={this.props.y}>
+      <Window title={title} height={240} width={260} {...this.props}>
         <div>
           <SoundPlayerContainer resolveUrl={currentItem.get('url')} clientId={CLIENT_ID}>
             <MediaControls currentItem={currentItem} />
