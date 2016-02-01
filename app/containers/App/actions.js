@@ -1,4 +1,11 @@
-import { AUTH_SUCCESS, AUTH_ERROR } from './constants';
+import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM } from './constants';
+
+export function selectPlaylistItem (data) {
+  return {
+    type: SELECT_PLAYLIST_ITEM,
+    data
+  }
+}
 
 export function authenticationSuccessful(data) {
   return {

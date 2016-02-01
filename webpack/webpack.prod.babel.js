@@ -5,12 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
-// PostCSS plugins
-const cssnext = require('postcss-cssnext');
-const postcssFocus = require('postcss-focus');
-const postcssReporter = require('postcss-reporter');
-const cssnano = require('cssnano');
-
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
   entry: [
@@ -20,23 +14,16 @@ module.exports = require('./webpack.base.babel')({
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
     'style-loader',
-    'css-loader?modules&importLoaders=1!postcss-loader'
+    'css-loader?cssnext-loader'
   ),
-  // In production, we minify our CSS with cssnano
-  postcssPlugins: [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10']
-    }),
-    cssnano({
-      autoprefixer: false, // cssnext already runs autoprefixer
-      discardUnused: false, // unsafe, see http://mxs.is/googmr
-      zindex: false // unsafe, see http://mxs.is/googmq
-    }),
-    postcssReporter({
-      clearMessages: true
-    })
-  ],
+  cssnext: {
+    compress: true,
+    features: {
+      rem: false,
+      pseudoElements: false,
+      colorRgba: false
+    }
+  },
   plugins: [
     // Minify and optimize the JavaScript
     new webpack.optimize.UglifyJsPlugin({

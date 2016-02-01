@@ -9,29 +9,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Img from 'Img';
-import Footer from 'Footer';
-import Logo from './logo.png';
-import A from 'A';
-
-import styles from './styles.css';
-
 class App extends React.Component {
   render() {
     return (
-      <div className={ styles.wrapper }>
-        <A
-          className={ styles.logoWrapper }
-          href="https://twitter.com/mxstbr"
-        >
-          <Img
-            className={styles.logo}
-            src={Logo}
-            alt="Max Stoiber - Logo"
-          />
-        </A>
+      <div>
+        <div className='bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex'>
+          <div className='bold px2'>λ</div>
+          <div className='bold px2'>Podcasts</div>
+          <div className='px2'>File</div>
+          <div className='px2'>Edit</div>
+          <div className='px2'>View</div>
+          <div className='px2'>Window</div>
+          <div className='px2'>Help</div>
+        </div>
         { this.props.children }
-        <Footer />
       </div>
     );
   }

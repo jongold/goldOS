@@ -24,7 +24,6 @@ import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
-import sagaMiddleware from 'redux-saga';
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -41,9 +40,6 @@ openSansObserver.check().then(() => {
 // Import the pages
 import App from 'App';
 
-// Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
-import '../node_modules/sanitize.css/dist/sanitize.min.css';
-
 /*
 *   Create the store with two middlewares :
 *   1. redux-thunk : Allow us to asynchronous things in the actions
@@ -51,8 +47,7 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 */
 
 import rootReducer from './rootReducer';
-import { loginSaga } from 'LoginForm/sagas';
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(loginSaga))(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore);
 const store = createStoreWithMiddleware(rootReducer, fromJS({}));
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
@@ -76,24 +71,8 @@ ReactDOM.render(
           path="/"
           getComponent={function get(location, cb) {
             require.ensure([], (require) => {
-              cb(null, require('HomePage').default);
-            }, 'HomePage');
-          }}
-        />
-        <Route
-          path="/features"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('FeaturePage').default);
-            }, 'FeaturePage');
-          }}
-        />
-        <Route
-          path="*"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('NotFoundPage').default);
-            }, 'NotFoundPage');
+              cb(null, require('Desktop').default);
+            }, 'Desktop');
           }}
         />
       </Route>

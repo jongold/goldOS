@@ -1,30 +1,171 @@
-/* Global styles */
+@import 'basscss';
+@import 'basscss-border-colors';
 
-body {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+/* Custom media queries */
+/*
+@custom-media --breakpoint-sm (min-width: 40em);
+@custom-media --breakpoint-md (min-width: 52em);
+@custom-media --breakpoint-lg (min-width: 64em);
+ */
+
+.sb-soundplayer-play-btn {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--sb-play-btn-color);
+  font-size: 1em;
+  height: auto;
+  vertical-align: middle;
+  outline: none;
+  cursor: pointer;
+  transition: transform, box-shadow, .05s ease;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+.sb-soundplayer-play-btn:hover {
+  transform: scale(1.0625);
+}
+.sb-soundplayer-play-btn:focus {
+  transform: scale(.9375);
+}
+.sb-soundplayer-play-btn:active {
+  box-shadow: inset 0 0 0 2px var(--sb-play-btn-color);
+}
+.sb-soundplayer-play-btn:hover,
+.sb-soundplayer-play-btn:focus {
+  box-shadow: none;
 }
 
-body.jsOpenSansLoaded {
-    font-family: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+:root {
+  --sb-play-btn-color: var(--gold);
 }
 
-.wrapper {
-    max-width: calc(768px + 16px * 2);
-    margin: 0 auto;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    height: 100%;
-    padding: 0 16px;
-    flex-direction: column;
+.sb-soundplayer-play-icon {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  vertical-align: middle;
 }
 
-.logoWrapper {
-    padding: 2em 0;
+.sb-soundplayer-progress-container {
+  background-color: var(--sb-progress-bg-color);
+  width: 100%;
+  border-radius: 10px;
+  height: var(--sb-progress-height);
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.logo {
-    max-height: 5em;
-    margin: 0 auto;
-    display: block;
+.sb-soundplayer-progress-inner {
+  background-color: var(--sb-progress-color);
+  height: 100%;
+  transition: width .2s ease-in;
+}
+
+:root {
+  --sb-progress-color: var(--gold);
+  --sb-progress-bg-color: var(--white);
+  --sb-progress-height: 6px;
+}
+
+
+
+.gold {
+  color: var(--gold);
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
+.border-gold {
+  border-color: var(--gold);
+}
+
+.stroke-white {
+  stroke: var(--white);
+}
+
+.fill-white {
+  fill: var(--white);
+}
+
+.stroke-gold {
+  stroke: var(--gold);
+}
+
+.fill-gold {
+  fill: var(--gold);
+}
+
+.rounded-2 {
+  border-radius: calc(var(--border-radius) * 2);
+}
+
+.vh100 {
+  height: 100vh;
+}
+
+.vw100 {
+  width: 100vw;
+}
+
+
+/* Custom properties */
+:root {
+  --font-family: 'Input Mono', Input, monospace;
+  --line-height: 1.5;
+  --heading-font-family: var(--font-family);
+  --heading-font-weight: bold;
+  --heading-line-height: 1.25;
+  --monospace-font-family: 'Source Code Pro', Consolas, monospace;
+  --h1: 2rem;
+  --h2: 1.5rem;
+  --h3: 1.25rem;
+  --h4: 1rem;
+  --h5: .875rem;
+  --h6: .75rem;
+  --bold-font-weight: bold;
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --form-field-font-size: 1rem;
+  --form-field-height: 2.25rem;
+  --form-field-padding-y: .5rem;
+  --form-field-padding-x: .5rem;
+  --button-font-size: inherit;
+  --button-font-weight: bold;
+  --button-line-height: 1.125rem;
+  --button-padding-y: .5rem;
+  --button-padding-x: 1rem;
+  --container-width: 64em;
+  --black:  #111;
+  --gray:   #aaa;
+  --silver: #ddd;
+  --white:  #fff;
+  --gold:   #DFBA69;
+  --aqua:   #7fdbff;
+  --blue:   #0074d9;
+  --navy:   #001f3f;
+  --teal:   #39cccc;
+  --green:  #2ecc40;
+  --olive:  #3d9970;
+  --lime:   #01ff70;
+  --yellow: #ffdc00;
+  --orange: #ff851b;
+  --red:    #ff4136;
+  --fuchsia:#f012be;
+  --purple: #b10dc9;
+  --maroon: #85144b;
+  --darken-1: rgba(0,0,0,.0625);
+  --darken-2: rgba(0,0,0,.125);
+  --darken-3: rgba(0,0,0,.25);
+  --darken-4: rgba(0,0,0,.5);
+  --border-width: 2px;
+  --border-radius: 3px;
+  --border-color: var(--darken-2);
+  --hover-background-color: var(--darken-1);
+  --link-color: var(--blue);
+  --button-background-color: var(--blue);
+  --pre-background-color: var(--silver);
 }
