@@ -12,6 +12,7 @@ import { selectPlaylistItem, closeWindow } from '../App/actions'
 import selector from './selector';
 
 import Book from 'Book';
+import Habits from 'Habits';
 import MediaPlayer from 'MediaPlayer';
 import Window from 'Window';
 
@@ -42,11 +43,15 @@ class Desktop extends React.Component {
   }
 
   render() {
-    console.log(this.props.windows.toJS())
     return (
       <div className='bg-gold vh100 vw100 overflow-hidden cu-default'>
         {this.props.windows.map((window, i) => {
           switch (window) {
+            case 'Habits':
+              return <Habits key={i}
+                data={this.props.habits}
+                x={300} y={60}
+                onClickClose={this.onCloseWindow} />
             case 'Bookshelf':
               return (
                 <Window key={i}

@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 
-const globalSelector = (state) => state.get('global');
-
-const bookSelector = (state) => state.getIn(['global', 'books']);
+const globalSelector  = (state) => state.get('global');
+const bookSelector    = (state) => state.getIn(['global', 'books']);
 const podcastSelector = (state) => state.getIn(['global', 'podcasts']);
 const windowsSelector = (state) => state.getIn(['global', 'windows']);
+const habitsSelector  = (state) => state.getIn(['global', 'habits']);
 
 const authenticationSelector = createSelector(
   globalSelector,
@@ -20,7 +20,8 @@ export default createSelector(
   bookSelector,
   podcastSelector,
   windowsSelector,
-  (books, podcasts, windows) => {
-    return ({ books, podcasts, windows })
+  habitsSelector,
+  (books, podcasts, windows, habits) => {
+    return ({ books, podcasts, windows, habits })
   }
 );
