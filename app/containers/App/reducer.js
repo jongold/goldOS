@@ -20,13 +20,13 @@ const initialState = fromJS({
       date: '2016-01-01',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-02',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-03',
@@ -68,19 +68,19 @@ const initialState = fromJS({
       date: '2016-01-09',
       'meditate': false,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-10',
       'meditate': false,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-11',
       'meditate': false,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-12',
@@ -176,61 +176,61 @@ const initialState = fromJS({
       date: '2016-01-27',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-28',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-29',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-30',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-01-31',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-02-01',
       'meditate': false,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-02-02',
       'meditate': false,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-02-03',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-02-04',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     },
     {
       date: '2016-02-05',
       'meditate': true,
       'no alcohol': true,
-      'reading': true
+      'reading': false
     }
   ],
   podcasts: {

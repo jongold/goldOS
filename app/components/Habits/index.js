@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
 import d3 from 'd3'
-import moment from 'moment'
 import { createElement } from 'react-faux-dom'
 import Window from 'Window'
-import R, { } from 'ramda'
-
+import { compose, curry, map, pick } from 'ramda'
 
 export default class Habits extends Component {
-  render () {
-    console.log(this.props)
-    const momentify = R.evolve({
-      date: moment
-    })
-
-    const habits = R.map(momentify, this.props.data.toJS())
+  renderHabit (prop) {
     const node = createElement('svg')
     const width = 134 + 2
     const cellSize = 7
@@ -26,8 +18,8 @@ export default class Habits extends Component {
       .append('g')
       .attr('transform', `translate(8, 8)`)
 
-    const position = R.curry((cellSize, margin, i) => {
-      return (i - 1) * (margin + (2 * cellSize)) 
+    const position = curry((cellSize, margin, i) => {
+      return (i - 1) * (margin + (2 * cellSize))
     })
 
     const boundPos = position(cellSize, margin)
@@ -43,11 +35,11 @@ export default class Habits extends Component {
       }
     }
 
-    const x = R.compose(boundPos, day)
-    const y = R.compose(boundPos, week)
+    const x = compose(boundPos, day)
+    const y = compose(boundPos, week)
 
     const rect = svg.selectAll('.day')
-      .data((d) => habits)
+      .data((d) => this.props.data)
       .enter()
       .append('circle')
       .attr('class', 'day')
@@ -59,18 +51,27 @@ export default class Habits extends Component {
       .attr('class', 'stroke-gold')
       .attr('data-date', (d) => d.date.toString())
       .attr('class', (d) => {
-        return d.meditate ? 'fill-gold' : 'fill-gold muted'
+        return d[prop] ? 'fill-gold' : 'fill-gold muted'
       })
+
+    return (
+      <div className='mr3'>
+        <p className='center h6 bold'>
+          {prop}
+        </p>
+        {node.toReact()}
+      </div>
+    )
+  }
+
+  render () {
 
     return (
       <Window title='Habits'>
         <div className='p2 flex'>
-          <div className='fex fex-column'>
-          <p className='center h6 bold'>
-            Meditate
-          </p>
-          {node.toReact()}
-        </div>
+          {this.renderHabit('meditate')}
+          {this.renderHabit('no alcohol')}
+          {this.renderHabit('reading')}
         </div>
       </Window>
     )
