@@ -1,5 +1,6 @@
 @import 'basscss';
 @import 'basscss-border-colors';
+@import 'cursors';
 
 /* Custom media queries */
 /*
@@ -66,8 +67,6 @@
   --sb-progress-bg-color: var(--white);
   --sb-progress-height: 6px;
 }
-
-
 
 .gold {
   color: var(--gold);

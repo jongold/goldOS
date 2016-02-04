@@ -44,7 +44,7 @@ class Desktop extends React.Component {
   render() {
     console.log(this.props.windows.toJS())
     return (
-      <div className='bg-gold vh100 vw100 overflow-hidden'>
+      <div className='bg-gold vh100 vw100 overflow-hidden cu-default'>
         {this.props.windows.map((window, i) => {
           switch (window) {
             case 'Bookshelf':
