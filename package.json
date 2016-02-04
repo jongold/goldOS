@@ -9,6 +9,7 @@
     "classnames": "^2.2.3",
     "fontfaceobserver": "^1.6.3",
     "immutable": "^3.7.6",
+    "ramda": "^0.19.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-draggable": "^1.1.3",

@@ -23,6 +23,7 @@ import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import { fromJS } from 'immutable';
+import { compose } from 'ramda';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
@@ -47,7 +48,10 @@ import App from 'App';
 */
 
 import rootReducer from './rootReducer';
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore);
+const createStoreWithMiddleware = compose(
+  applyMiddleware(reduxRouterMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore);
 const store = createStoreWithMiddleware(rootReducer, fromJS({}));
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
