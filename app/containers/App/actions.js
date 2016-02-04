@@ -1,8 +1,15 @@
-import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, CLOSE_WINDOW } from './constants';
+import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, SELECT_WINDOW, CLOSE_WINDOW } from './constants';
 
 export function selectPlaylistItem (data) {
   return {
     type: SELECT_PLAYLIST_ITEM,
+    data
+  }
+}
+
+export function selectWindow (data) {
+  return {
+    type: SELECT_WINDOW,
     data
   }
 }

@@ -15,7 +15,7 @@ class App extends React.Component {
       <div>
         <div className='bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex'>
           <div className='bold px2'>λ</div>
-          <div className='bold px2'>Podcasts</div>
+          <div className='bold px2'>{this.props.currentWindow}</div>
           <div className='px2'>File</div>
           <div className='px2'>Edit</div>
           <div className='px2'>View</div>
@@ -29,4 +29,9 @@ class App extends React.Component {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect()(App);
+export default connect((state) => {
+  const currentWindow = state.getIn(['global', 'windows']).last()
+  return {
+    currentWindow: currentWindow ? currentWindow.get('title') : 'Finder'
+  }
+})(App);

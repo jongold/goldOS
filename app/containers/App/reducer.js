@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, CLOSE_WINDOW } from './constants';
+import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, SELECT_WINDOW, CLOSE_WINDOW } from './constants';
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
@@ -37,9 +37,15 @@ function formReducer(state = initialState, action) {
       return state.set('authenticated', false);
     case SELECT_PLAYLIST_ITEM:
       return state.setIn(['podcasts', 'current'], action.data)
+    case SELECT_WINDOW:
+      return state.update('windows', (windows) => {
+        const win = windows.find((w) => w.get('id') === action.data)
+        return windows
+          .filterNot((w) => w.get('id') === action.data)
+          .push(win)
+      })
     case CLOSE_WINDOW:
-      console.log(action)
-      return state.update('windows', (windows) => windows.filterNot((w) => w === action.data))
+      return state.update('windows', (windows) => windows.filterNot((w) => w.get('id') === action.data))
     default:
       return state;
   }
