@@ -55,15 +55,20 @@ class MediaPlayer extends Component {
         <div className='p1'>
           <ul className='m0 list-reset'>
             {items.map((episode, i) => {
+              const hasUrl = episode.has('url')
               const title = episode.get('title')
               const cx = classNames('h6', {
-                'bold': title === current
+                'bold': title === current,
+                'muted': !hasUrl,
+                'cu-pointer': hasUrl,
+                'cu-not-allowed': !hasUrl
               })
 
               return (<li key={i}
                 className={cx}
-                onClick={() => clickPlaylistItem(title)}>
+                onClick={hasUrl ? () => clickPlaylistItem(title) : null}>
                 {(title === current) ? '▶︎' : null} {title}
+                { hasUrl ? null : ' (soon)' }
               </li>)
             })}
           </ul>
