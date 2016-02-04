@@ -4,7 +4,7 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   authenticated: false,
   userData: {},
-  windows: ['Bookshelf', 'Podcasts', 'functional css'],
+  windows: ['Bookshelf', 'Podcasts', 'Welcome'],
   books: [
     { title: 'Mindfulness in Plain English' },
     { title: 'The Artist\'s Way' },

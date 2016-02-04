@@ -15,7 +15,8 @@ import Book from 'Book';
 import MediaPlayer from 'MediaPlayer';
 import Window from 'Window';
 
-import post from '../../posts/fcss.md'
+import fcssPost from '../../posts/fcss.md'
+import welcomePost from '../../posts/welcome.md'
 
 
 class Desktop extends React.Component {
@@ -69,12 +70,20 @@ class Desktop extends React.Component {
                   items={this.props.podcasts.get('library')} />
                 )
 
+            case 'Welcome':
+              return (
+                <Window key={i}
+                  title='welcome'
+                  onClickClose={this.onCloseWindow}>
+                  <div className='h6 p2' dangerouslySetInnerHTML={{__html: welcomePost}} />
+                </Window>
+              )
             case 'functional css':
               return (
                 <Window key={i}
                   title='functional css'
                   onClickClose={this.onCloseWindow}>
-                  <div className='h6 p2' dangerouslySetInnerHTML={{__html: post}} />
+                  <div className='h6 p2' dangerouslySetInnerHTML={{__html: fcssPost}} />
                 </Window>
               )
           }
