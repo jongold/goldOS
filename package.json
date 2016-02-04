@@ -1,7 +1,7 @@
 {
-  "name": "reactjs-boilerplate",
-  "version": "2.4.0",
-  "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
+  "name": "goldos",
+  "version": "0.0.1",
+  "description": "My new website",
   "dependencies": {
     "babel-polyfill": "6.3.14",
     "basscss": "^7.1.0",
@@ -103,6 +103,6 @@
     "test:ie": "npm run test -- --browsers IE"
   },
   "pre-commit": "lint:staged",
-  "author": "Max Stoiber",
+  "author": "Jon Gold",
   "license": "MIT"
 }
