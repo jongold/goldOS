@@ -45,6 +45,15 @@ class Desktop extends React.Component {
   render() {
     return (
       <div className='bg-gold vh100 vw100 overflow-hidden cu-default'>
+        <div className='bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex'>
+          <div className='bold px2'>λ</div>
+          <div className='bold px2'>{this.props.windows.last().get('title') || 'Finder'}</div>
+          <div className='px2'>File</div>
+          <div className='px2'>Edit</div>
+          <div className='px2'>View</div>
+          <div className='px2'>Window</div>
+          <div className='px2'>Help</div>
+        </div>
         {this.props.windows.map((window, i) => {
           switch (window) {
             case 'Habits':

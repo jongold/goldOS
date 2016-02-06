@@ -71,8 +71,16 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={App}>
+        <Route path="/"
+          getComponent={function get(location, cb) {
+            require.ensure([], (require) => {
+              cb(null, require('BootSequence').default);
+            }, 'BootSequence');
+          }}
+        />
+
         <Route
-          path="/"
+          path="/desktop"
           getComponent={function get(location, cb) {
             require.ensure([], (require) => {
               cb(null, require('Desktop').default);
