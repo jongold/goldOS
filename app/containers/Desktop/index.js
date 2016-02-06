@@ -4,12 +4,13 @@
  */
 
 import React from 'react';
-import { DragDropContext } from 'react-dnd';
+import { DragDropContext, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { ItemTypes } from '../../containers/App/constants'
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { selectPlaylistItem, selectWindow, closeWindow } from '../App/actions'
+import { selectPlaylistItem, selectWindow, closeWindow, moveWindow } from '../App/actions'
 import { compose } from 'ramda'
 
 import selector from './selector';
@@ -18,9 +19,22 @@ import Book from 'Book';
 import Habits from 'Habits';
 import MediaPlayer from 'MediaPlayer';
 import Window from 'Window';
+import img from './avatar.png';
 
 import fcssPost from '../../posts/fcss.md'
 import welcomePost from '../../posts/welcome.md'
+
+const windowTarget = {
+  drop (props, monitor, component) {
+    const item = monitor.getItem();
+    const delta = monitor.getDifferenceFromInitialOffset();
+    // const { id } = item
+    const x = Math.round(item.x + delta.x);
+    const y = Math.round(item.y + delta.y);
+
+    component.moveWindow({ id: item.id, x, y })
+  }
+}
 
 class Desktop extends React.Component {
   constructor() {
@@ -49,12 +63,17 @@ class Desktop extends React.Component {
     this.props.dispatch(selectPlaylistItem(item))
   }
 
+  moveWindow (item) {
+    this.props.dispatch(moveWindow(item))
+  }
+
   render() {
-    const { windows } = this.props;
+    const { windows, connectDropTarget } = this.props;
     const title = windows.last() ? windows.last().get('title') : 'goldOS'
 
-    return (
-      <div className='bg-gold vh100 vw100 overflow-hidden cu-default'>
+    return connectDropTarget(
+      <div style={{background: `no-repeat center center url(${img}) 50% auto`, backgroundColor: '#DFBA69'}}
+        className='bg-gold vh100 vw100 overflow-hidden cu-default'>
         <div className='bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex'>
           <div className='bold px2'>λ</div>
           <div className='bold px2'>{ title }</div>
@@ -135,5 +154,8 @@ class Desktop extends React.Component {
 
 export default compose(
   connect(selector),
-  DragDropContext(HTML5Backend)
+  DragDropContext(HTML5Backend),
+  DropTarget(ItemTypes.WINDOW, windowTarget, connect => ({
+    connectDropTarget: connect.dropTarget()
+  }))
 )(Desktop)
