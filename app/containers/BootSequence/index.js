@@ -33,7 +33,7 @@ class BootSequence extends Component {
       cursor: {
         show: true,
         blink: true,
-        element: '|',
+        element: '_',
         hideWhenDone: false,
         hideWhenDoneDelay: 1000,
       }
@@ -42,10 +42,11 @@ class BootSequence extends Component {
       <div className={cx}>
 >
         <div className='console-text h6 pre mb4'>
+          {logo}
+          <p>Copyright (C) 1989-2016, Jon Gold</p>
           <p>“I think it’s extraordinarily important that<br />
             we in computer science keep fun in computing”<br />
             — Alan J. Perlis</p>
-          {logo}
         </div>
           <div className='console-text h6'>
             { this.state.show ? (
@@ -55,26 +56,43 @@ class BootSequence extends Component {
                 {name} {version}
                 <br />
                 <br />
-                <strong>λ</strong> system
+                <strong>λ</strong> system start
+                <br />
+                <br />
               </Typist>
             ) : null }
             { this.state.renderLoading ? (
               <Typist cursor={{show: false}}
                 avgTypingDelay={0}
                 onTypingDone={this.onFinishLoading}>
+                <span className='pre'>View Library       ... ReactJS</span>
                 <br />
-                reticulating splines...........
+                <span className='pre'>State Container    ... Redux</span>
+                <br />
+                <span className='pre'>StyleSheets        ... Basscss</span>
+                <br />
+                <br />
+                <span className='pre'>Aligning Body      ... TRUE</span>
+                <br />
+                <span className='pre'>Aligning Breath    ... TRUE</span>
+                <br />
+                <span className='pre'>Aligning Mind      ... TRUE</span>
+                <br />
+                <span className='pre'>Aligning Algorithm ... TRUE</span>
+                <br />
                 <br />
                 beep boop beep boop
                 <br />
-                I program
+                reticulating splines...........
                 <br />
-                my home computer
-                <br />
-                beam myself
-                <br />
-                into the future
-                <br />
+                {/* I program */}
+                {/* <br /> */}
+                {/* my home computer */}
+                {/* <br /> */}
+                {/* beam myself */}
+                {/* <br /> */}
+                {/* into the future */}
+                {/* <br /> */}
                 beep boop beep boop
                 <br />
                 loading........................
