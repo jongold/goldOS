@@ -4,7 +4,7 @@ import { SELECT_PLAYLIST_ITEM } from './constants';
 export default function postcastsReducer (state = initialState, action) {
   switch (action.type) {
     case SELECT_PLAYLIST_ITEM:
-      return state.setIn(['podcasts', 'current'], action.data)
+      return state.set('current', action.data)
     default:
       return state
   }

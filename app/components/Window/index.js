@@ -1,11 +1,68 @@
 import React, { Component } from 'react';
-import Draggable from 'react-draggable';
+import { ItemTypes } from '../../containers/App/constants'
+import { DragSource } from 'react-dnd';
+
+const windowSource = {
+  beginDrag({ id, x, y }) {
+    return { id, x, y }
+  }
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+class Window extends Component {
+  static propTypes = {
+    title: React.PropTypes.string.isRequired,
+    id: React.PropTypes.number.isRequired,
+    x: React.PropTypes.number,
+    y: React.PropTypes.number,
+    z: React.PropTypes.number,
+    height: React.PropTypes.number,
+    width: React.PropTypes.number,
+    onSelect: React.PropTypes.func,
+    onClickClose: React.PropTypes.func,
+    connectDragSource: React.PropTypes.func.isRequired,
+    isDragging: React.PropTypes.bool.isRequired
+  };
+
+  render() {
+    const { connectDragSource, isDragging } = this.props
+
+    const contentStyle = {
+      minHeight: this.props.height || 480,
+      width: this.props.width || 640
+    }
+
+    const wrapperStyle = {
+      opacity: isDragging ? 0.5 : 1,
+      top: this.props.y,
+      left: this.props.x,
+      zIndex: this.props.z * 100
+    }
+
+    return connectDragSource(
+      <div style={wrapperStyle}
+        className='bg-white absolute rounded-2 border border-gold gold'>
+        <WindowTitle {...this.props}
+          onClickClose={this.props.onClickClose}
+          onSelect={this.props.onSelect} />
+        <div style={contentStyle}>
+          { this.props.children }
+        </div>
+      </div>
+    );
+  }
+}
+
+export default DragSource(ItemTypes.WINDOW, windowSource, collect)(Window)
 
 class TrafficLights extends Component {
-  constructor () {
-    super()
-    this.state = { hovered: false }
-  }
+  state = { hovered: false };
 
   render () {
     const fillColor = this.state.hovered ? 'fill-gold' : 'fill-white'
@@ -36,50 +93,13 @@ class TrafficLights extends Component {
   }
 };
 
-const WindowTitle = ({ title, onClickClose }) => {
+const WindowTitle = ({ title, onClickClose, onSelect, id }) => {
   const cx = 'flex flex-center border-bottom border-gold px1 py1 js-handle';
+
   return (
-    <div className={cx}>
-      <TrafficLights onClick={() => onClickClose(title)} />
+    <div className={cx} style={{height: 20}}>
+      <TrafficLights onClick={() => onClickClose(id)} />
       <span className='flex-grow center bold h6' style={{marginRight: 41}}>{title}</span>
     </div>
   );
 };
-
-class Window extends React.Component {
-  render() {
-
-    const draggableProps = {
-      start: {
-        x: this.props.x || 100,
-        y: this.props.y || 100,
-      },
-      bounds: {
-        top: 0,
-        left: 0
-      },
-      // handle: '.js-handle',
-      grid: [20, 20]
-    }
-
-    const contentStyle = {
-      minHeight: this.props.height || 480,
-      width: this.props.width || 640
-    }
-
-    return (
-      <Draggable {...draggableProps}>
-        <div className='bg-white absolute rounded-2 border border-gold gold'>
-          <WindowTitle {...this.props} onClickClose={this.props.onClickClose} />
-          <div style={contentStyle}>{ this.props.children }</div>
-        </div>
-      </Draggable>
-    );
-  }
-}
-
-Window.propTypes = {
-  title: React.PropTypes.string.isRequired
-};
-
-export default Window;

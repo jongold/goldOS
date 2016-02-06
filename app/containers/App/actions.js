@@ -7,6 +7,14 @@ export function selectPlaylistItem (data) {
   }
 }
 
+export function moveWindow (data) {
+  console.log(data)
+  return {
+    type: 'MOVE_WINDOW',
+    data
+  }
+}
+
 export function selectWindow (data) {
   return {
     type: SELECT_WINDOW,
