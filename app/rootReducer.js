@@ -7,9 +7,15 @@ import { combineReducers } from 'redux-immutable';
 import { routeReducer } from 'react-router-redux';
 import formReducer from 'LoginForm/reducer';
 import globalReducer from 'App/reducer';
+import booksReducer from 'App/booksReducer';
+import habitsReducer from 'App/habitsReducer';
+import podcastsReducer from 'App/podcastsReducer';
 
 export default combineReducers({
   route: routeReducer,
   form: formReducer,
-  global: globalReducer
+  windows: globalReducer,
+  books: booksReducer,
+  habits: habitsReducer,
+  podcasts: podcastsReducer
 });

@@ -4,10 +4,13 @@
  */
 
 import React from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { selectPlaylistItem, closeWindow } from '../App/actions'
+import { selectPlaylistItem, selectWindow, closeWindow } from '../App/actions'
+import { compose } from 'ramda'
 
 import selector from './selector';
 
@@ -19,12 +22,12 @@ import Window from 'Window';
 import fcssPost from '../../posts/fcss.md'
 import welcomePost from '../../posts/welcome.md'
 
-
 class Desktop extends React.Component {
   constructor() {
     super();
     this.onChangeRoute = this.onChangeRoute.bind(this)
     this.onClickPlaylistItem = this.onClickPlaylistItem.bind(this)
+    this.onSelectWindow = this.onSelectWindow.bind(this)
     this.onCloseWindow = this.onCloseWindow.bind(this)
   }
 
@@ -34,8 +37,12 @@ class Desktop extends React.Component {
     this.props.dispatch(routeActions.push(url));
   }
 
-  onCloseWindow (title) {
-    this.props.dispatch(closeWindow(title))
+  onSelectWindow (id) {
+    this.props.dispatch(selectWindow(id))
+  }
+
+  onCloseWindow (id) {
+    this.props.dispatch(closeWindow(id))
   }
 
   onClickPlaylistItem (item) {
@@ -43,11 +50,14 @@ class Desktop extends React.Component {
   }
 
   render() {
+    const { windows } = this.props;
+    const title = windows.last() ? windows.last().get('title') : 'goldOS'
+
     return (
       <div className='bg-gold vh100 vw100 overflow-hidden cu-default'>
         <div className='bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex'>
           <div className='bold px2'>λ</div>
-          <div className='bold px2'>{this.props.windows.last().get('title') || 'Finder'}</div>
+          <div className='bold px2'>{ title }</div>
           <div className='px2'>File</div>
           <div className='px2'>Edit</div>
           <div className='px2'>View</div>
@@ -55,17 +65,24 @@ class Desktop extends React.Component {
           <div className='px2'>Help</div>
         </div>
         {this.props.windows.map((window, i) => {
-          switch (window) {
+
+          switch (window.get('title')) {
             case 'Habits':
-              return <Habits key={i}
-                data={this.props.habits}
-                x={300} y={60}
-                onClickClose={this.onCloseWindow} />
+              return (
+                <Habits key={i}
+                  id={window.get('id')}
+                  data={this.props.habits}
+                  x={300} y={60} z={i}
+                  onClickClose={this.onCloseWindow} />
+              )
+
             case 'Bookshelf':
               return (
                 <Window key={i}
-                  title='Bookshelf'
-                  x={300} y={60}
+                  id={window.get('id')}
+                  title={window.get('title')}
+                  x={window.get('x')} y={window.get('y')} z={i}
+                  onSelect={this.onSelectWindow}
                   onClickClose={this.onCloseWindow}>
                   <div className='flex flex-wrap p2'>
                     {this.props.books.map((book, i) => <Book item={book} key={i} />)}
@@ -76,8 +93,10 @@ class Desktop extends React.Component {
             case 'Podcasts':
               return (
                 <MediaPlayer key={i}
-                  title='Podcasts'
-                  x={20} y={60}
+                  id={window.get('id')}
+                  title={window.get('title')}
+                  x={window.get('x')} y={window.get('y')} z={i}
+                  onSelect={this.onSelectWindow}
                   onClickClose={this.onCloseWindow}
                   clickPlaylistItem={this.onClickPlaylistItem}
                   current={this.props.podcasts.get('current')}
@@ -87,7 +106,9 @@ class Desktop extends React.Component {
             case 'Welcome':
               return (
                 <Window key={i}
-                  title='welcome'
+                  id={window.get('id')}
+                  title={window.get('title')}
+                  x={window.get('x')} y={window.get('y')} z={i}
                   onClickClose={this.onCloseWindow}>
                   <div className='h6 p2' dangerouslySetInnerHTML={{__html: welcomePost}} />
                 </Window>
@@ -95,9 +116,14 @@ class Desktop extends React.Component {
             case 'functional css':
               return (
                 <Window key={i}
-                  title='functional css'
+                  id={window.get('id')}
+                  title={window.get('title')}
+                  x={window.get('x')} y={window.get('y')} z={i}
+                  onSelect={this.onSelectWindow}
                   onClickClose={this.onCloseWindow}>
-                  <div className='h6 p2' dangerouslySetInnerHTML={{__html: fcssPost}} />
+                  <div className='h6 p2 overflow-scroll'
+                    style={{maxHeight: '640px'}}
+                    dangerouslySetInnerHTML={{__html: fcssPost}} />
                 </Window>
               )
           }
@@ -107,6 +133,7 @@ class Desktop extends React.Component {
   }
 }
 
-// Wrap the component to inject dispatch and state into it
-
-export default connect(selector)(Desktop);
+export default compose(
+  connect(selector),
+  DragDropContext(HTML5Backend)
+)(Desktop)
