@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Typist from 'react-typist'
-import text from '../../posts/bootsequence.md'
 import { name, version } from 'json!../../../package.json'
 import { connect } from 'react-redux'
 import { routeActions } from 'react-router-redux'
@@ -64,29 +63,21 @@ class BootSequence extends Component {
                 avgTypingDelay={0}
                 onTypingDone={this.onFinishLoading}>
                 <br />
-                loading........................
-                <br />
                 reticulating splines...........
                 <br />
-                i
+                beep boop beep boop
                 <br />
-                program
+                I program
                 <br />
-                my
+                my home computer
                 <br />
-                home
+                beam myself
                 <br />
-                computer
+                into the future
                 <br />
-                beam
+                beep boop beep boop
                 <br />
-                myself
-                <br />
-                into
-                <br />
-                the
-                <br />
-                future
+                loading........................
                 <br />
               </Typist>
             ) : null }
