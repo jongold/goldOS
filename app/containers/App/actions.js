@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, SELECT_WINDOW, CLOSE_WINDOW } from './constants';
+import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, SELECT_WINDOW, CLOSE_WINDOW, MOVE_WINDOW } from './constants';
 
 export function selectPlaylistItem (data) {
   return {
@@ -10,7 +10,7 @@ export function selectPlaylistItem (data) {
 export function moveWindow (data) {
   console.log(data)
   return {
-    type: 'MOVE_WINDOW',
+    type: MOVE_WINDOW,
     data
   }
 }
