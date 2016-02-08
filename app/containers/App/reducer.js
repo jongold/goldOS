@@ -23,14 +23,14 @@ const roundY = compose(
 function formReducer(state = initialState, action) {
   switch (action.type) {
     case SELECT_WINDOW:
-      return state.update('windows', (windows) => {
-        const win = windows.find((w) => w.get('id') === action.data)
-        return windows
-          .filterNot((w) => w.get('id') === action.data)
-          .push(win)
-      })
+      const win = state.find((w) => w.get('id') === action.data)
+
+      return state.filterNot((w) => w.get('id') === action.data)
+                  .push(win)
+
     case CLOSE_WINDOW:
       return state.filterNot((w) => w.get('id') === action.data)
+
     case MOVE_WINDOW:
       const { id, x, y } = action.data
 
@@ -41,8 +41,10 @@ function formReducer(state = initialState, action) {
       const newState = state.filterNot((w) => w.get('id') === id)
                             .push(newWin)
       return newState
+
     default:
       return state;
+
   }
 }
 
