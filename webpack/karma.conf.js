@@ -13,7 +13,7 @@ module.exports = (config) => {
     singleRun: true,
 
     files: [
-      '../app/**/*.test.js'
+      '../app/**/*.test.js',
     ],
 
     preprocessors: {
@@ -24,14 +24,14 @@ module.exports = (config) => {
 
     // make Webpack bundle generation quiet
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
 
     customLaunchers: {
       ChromeTravis: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    }
+        flags: ['--no-sandbox'],
+      },
+    },
   });
 };

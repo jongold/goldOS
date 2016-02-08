@@ -18,10 +18,10 @@ module.exports = {
         loader: 'babel',
         exclude: [/node_modules/],
         query: {
-          plugins: ['babel-plugin-rewire']
-        }
+          plugins: ['babel-plugin-rewire'],
+        },
       },
-    ]
+    ],
   },
   // Some node_modules pull in Node-specific dependencies.
   // Since we're running in a browser we have to stub them out. See:
@@ -39,12 +39,12 @@ module.exports = {
     jsdom: 'window',
     cheerio: 'window',
     'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': 'window'
+    'react/lib/ReactContext': 'window',
   },
   resolve: {
     alias: {
       // required for enzyme to work properly
-      sinon: 'sinon/pkg/sinon'
+      sinon: 'sinon/pkg/sinon',
     },
   },
 };

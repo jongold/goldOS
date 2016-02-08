@@ -23,13 +23,13 @@ function NotFound(props) {
 // react-redux stuff
 function mapStateToProps(state) {
   return {
-    location: state.get('route').location
+    location: state.get('route').location,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeRoute: (url) => dispatch(routeActions.push(url))
+    changeRoute: (url) => dispatch(routeActions.push(url)),
   };
 }
 

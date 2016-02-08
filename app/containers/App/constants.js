@@ -6,5 +6,5 @@ export const CLOSE_WINDOW = 'CLOSE_WINDOW';
 export const MOVE_WINDOW = 'MOVE_WINDOW';
 
 export const ItemTypes = {
-  WINDOW: 'window'
-}
+  WINDOW: 'window',
+};

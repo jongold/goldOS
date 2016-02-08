@@ -6,10 +6,9 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes } from 'react';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div>
@@ -19,5 +18,8 @@ class App extends React.Component {
   }
 }
 
-// Wrap the component to inject dispatch and state into it
-export default App
+App.propTypes = {
+  children: PropTypes.element,
+};
+
+export default App;

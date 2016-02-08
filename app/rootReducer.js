@@ -17,5 +17,5 @@ export default combineReducers({
   windows: globalReducer,
   books: booksReducer,
   habits: habitsReducer,
-  podcasts: podcastsReducer
+  podcasts: podcastsReducer,
 });
