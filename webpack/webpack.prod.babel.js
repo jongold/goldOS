@@ -12,11 +12,7 @@ module.exports = require('./webpack.base.babel')({
   ],
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
-  cssLoaders: ExtractTextPlugin.extract(
-    'style-loader',
-    'css-loader',
-    'cssnext-loader'
-  ),
+  cssLoaders: 'style-loader!css-loader!cssnext-loader',
   cssnext: {
     compress: true,
     features: {
