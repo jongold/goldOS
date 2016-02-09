@@ -9,6 +9,7 @@ import globalReducer from 'App/reducer';
 import booksReducer from 'App/booksReducer';
 import habitsReducer from 'App/habitsReducer';
 import podcastsReducer from 'App/podcastsReducer';
+import travelReducer from 'App/travelReducer';
 
 export default combineReducers({
   route: routeReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   books: booksReducer,
   habits: habitsReducer,
   podcasts: podcastsReducer,
+  travel: travelReducer,
 });

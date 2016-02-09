@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import IPropTypes from 'react-immutable-proptypes';
 import topojson from 'topojson';
 import classNames from 'classnames';
 import d3 from 'd3';
 import { compose, contains, find, pluck, prop, propEq } from 'ramda';
 
-import world110m from 'json!./out.json';
+import world110m from 'json!./world-110m.topojson';
 import states from 'json!./states.topojson';
 
 import { createElement } from 'react-faux-dom';
@@ -13,40 +13,17 @@ import { createElement } from 'react-faux-dom';
 import Window from 'Window';
 
 class Map extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    const { x, y, z, places } = this.props;
+    const { x: x1, y: y1, z: z1, places: places1 } = nextProps;
+
+    return x !== x1 || y !== y1 || z !== z1 || places !== places1;
+  }
+
   render() {
-    const visited = [
-      { name: 'Australia', current: true },
-      { name: 'Denmark' },
-      { name: 'France' },
-      { name: 'Germany' },
-      { name: 'Ireland' },
-      { name: 'Italy' },
-      { name: 'Portugal' },
-      { name: 'Sweden' },
-      { name: 'United Arab Emirates' },
-      { name: 'United Kingdom' },
-      { name: 'United States of America', states: [
-        { name: 'California' },
-        { name: 'Florida' },
-        { name: 'Illinois' },
-        { name: 'Nevada' },
-        { name: 'New York' },
-        { name: 'North Carolina' },
-        { name: 'Oregon' },
-      ] },
-      { name: 'Belgium' },
-      { name: 'Gibraltar' },
-      { name: 'Greece' },
-      { name: 'Israel' },
-      { name: 'Jersey' },
-      { name: 'Latvia' },
-      { name: 'Malta' },
-      { name: 'Mauritius' },
-      { name: 'Monaco' },
-      { name: 'Netherlands' },
-      { name: 'Spain' },
-      { name: 'Turkey' },
-    ];
+    console.log('render map');
+    const visited = this.props.places.toJS();
 
     // const visitedNames = pluck('name', visited);
 
@@ -57,11 +34,7 @@ class Map extends Component {
 
     const statesVisitedNames = pluck('name', statesVisited);
 
-    const {} = this.props;
-    const title = 'Travels';
-
-    const height = '480';
-    const width = '640';
+    const { height, width, title } = this.props;
 
     const node = createElement('svg');
 
@@ -147,7 +120,10 @@ class Map extends Component {
 }
 
 Map.propTypes = {
-  visited: IPropTypes.list,
+  places: IPropTypes.list,
+  height: PropTypes.number,
+  width: PropTypes.number,
+  title: PropTypes.string,
 };
 
 export default Map;
