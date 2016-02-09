@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>Functional Programming, CSS, and your sanity - Jon Gold - Designer & Technologist</title>
+  <meta name="author" content="Jon Gold">
+
+  
+  <meta name="description" content="Learning Clojure and/or Haskell will make you a better programmer. Even if you don’t use it day to day, there are a ton of prescient lessons to be ...">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jon.gold/2015/07/functional-css/">
+  <link href="/public/favicon.ico" rel="icon">
+  <script src="//use.typekit.net/ioa0ewp.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
+  <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jon Gold - Designer & Technologist" type="application/atom+xml">
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22784947-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+<script type="text/javascript">
+  var GoSquared = {};
+  GoSquared.acct = "GSN-738889-F";
+  (function(w){
+    function gs(){
+      w._gstc_lt = +new Date;
+      var d = document, g = d.createElement("script");
+      g.type = "text/javascript";
+      g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+      var s = d.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(g, s);
+    }
+    w.addEventListener ?
+      w.addEventListener("load", gs, false) :
+      w.attachEvent("onload", gs);
+  })(window);
+</script>
+
+  <meta content="Jon Gold - Designer & Technologist" property="og:site_name">
+  
+  <meta content="Functional Programming, CSS, and your sanity" property="og:title">
+  
+  
+  <meta content="article" property="og:type">
+  
+  <meta content="Learning Clojure and/or Haskell will make you a better programmer. Even if you don’t use it day to day, there are a ton of prescient lessons to be ..." property="og:description">
+  
+  <meta content="http://jon.gold/2015/07/functional-css/" property="og:url">
+  
+  
+  <meta content="2015-07-01T00:00:00+04:00" property="article:published_time">
+  <meta content="http://jon.gold" property="article:author">
+  
+  
+  <meta content="http://jon.gold/public/images/jongold-xoxo-2015.jpg" property="og:image">
+  
+  
+  
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@jongold">
+  
+  <meta content="Functional Programming, CSS, and your sanity" name="twitter:title">
+  
+
+  <meta content="Learning Clojure and/or Haskell will make you a better programmer. Even if you don’t use it day to day, there are a ton of prescient lessons to be ..." property="twitter:description">
+
+  <meta name="twitter:creator" content="@jongold">
+  
+  <meta content="http://jon.gold/public/images/jongold-xoxo-2015.jpg" name="twitter:image:src">
+  
+  <meta name="twitter:domain" content="http://jon.gold">
+</head>
+
+  <body>
+    <div class="wrapper">
+      <header id="header">
+  <h1><a href="/">@jongold</a></h1>
+
+  
+</header>
+
+      <article class="post">
+
+
+
+<header>
+<h1>Functional Programming, CSS, and your sanity</h1>
+</header>
+
+
+
+<div class="article-content">
+<p>Learning Clojure and/or Haskell will make you a better programmer. Even if you don’t use it day to day, there are a ton of prescient lessons to be taken back to your language of choice.</p>
+
+<p>Functional programming is infectious. I find it beautiful &amp; elegant in much the same way as a <a href="http://dieterrams.tumblr.com/">Braun watch</a> or Karl Gerstner’s grid system for <a href="https://www.flickr.com/photos/watz/2382027037/sizes/l/">Capital magazine</a>. Good design (my preferred school of good design, at least) is mathsy, rational and pure—and CSS is design—so it follows that there are a bunch of lessons we can bring back from FP land into design.</p>
+
+<p>I’ve been meaning to write this post for months but technical blogging takes me ages — excuse the brain dump.</p>
+
+<p>These ideas have been swirling around for a few years; shout out to <a href="https://twitter.com/jxnblk">Brent Jackson</a> and <a href="https://twitter.com/mrmrs_">Adam Morse</a> for shipping something incredible in <a href="http://www.basscss.com/">Basscss</a> &amp; <a href="http://tachyons.io/">Tachyons</a> respectively, whilst I’ve been sitting and thinking about it.</p>
+
+<h1 id="fcss-is">f(css) is:</h1>
+<ul>
+  <li><strong>Functional</strong>. Small, clear, easy to read classes that are easy to apply and do one thing. You might have called them ‘utility classes’ with some snark, but they rock. A random example from Basscss would be the margin &amp; padding classes - <code>mb1</code>, <code>px2</code> (margin-bottom-1, padding-x-2) etc. The super short naming conventions are optional (I just love Brent’s implementation) — I guess you could write a library with less terse class names if you’re a masochist, but FP seems to tend toward short variable names. When you consolidate all of your sizing &amp; spacing into reusable classes you <em>force</em> a beautiful type scale &amp; rhythm on your design. Neat!</li>
+  <li><strong>Composable</strong>. In FP it’s fun to compose a bunch of small functions together to create larger actions. The parallel in f(css) is building up big ol’ chains of tiny classes. Think declarative composition — <code>&lt;a class="mb2 bg-green white px2 rounded"&gt;</code> rather than OO-derived objects &amp; modifiers — <code>&lt;a class="btn btn--primary"&gt;</code>. Scared of writing lots of classes? No shit, everyone hates typing. Wrap them up in React components to your heart’s content. <a href="https://github.com/JedWatson/classnames">classnames</a> is a fun module for dynamically composing groups of classes, so you don’t end up with massive strings all over the shop. <strong>The point isn’t to get away from component-based <em>design</em></strong> (which rocks and should be a cornerstone of your design ethos); rather you should get away from component-based CSS, which is crappy and repetitive.</li>
+  <li><strong>Immutable</strong>. On to the fun stuff. Declare a property once and you should be damn sure it’s never going to get overwritten. Fuck specificity. Apply the class you want — margin-bottom, say — and rest assured that no one else’s CSS is going to override it. The problem here is that CSS isn’t immutable (has anyone made an actually-immutable CSS preprocessor? If not I’m going to write one), but be clever in your implementation and it’s <em>kind of like immutability</em>.</li>
+  <li><strong>Referentially transparent</strong>. This is a fancy way of saying ‘it should be guaranteed to do the thing you want it to do’. The cascade and ems are two of the worst things about CSS. I’m tired of playing guesswork because some framework author decided that using multipliers was a good idea.</li>
+  <li><strong>Side-effect free</strong>. not only should a class do the same thing every time, but it should never, ever change anything other than what you’re targeting.</li>
+</ul>
+
+<p>I’m aware that this is almost the polar opposite of both OOCSS/SMACSS, and everything that some semantic web bore told you off for doing once upon a time, but I think this is the future of CSS. It’s easy to reason about, quick to write, lightning fast for browsers to parse, and gets rid of the clusterfuck that is the ‘C’ in CSS.</p>
+
+<p>Tweet me if you massively disagree, I’ve fudged an FP metaphor, you’ve built an immutable CSS processor, or you think CSS class names should be machine-readable (lol).</p>
+
+<p>edit: <a href="https://twitter.com/4lpine">John Otander</a> is working on a linter for immutable CSS. This makes me happy. <a href="https://github.com/johnotander/immutable-css">johnotander/immutable-css</a></p>
+
+<p>Further reading:<br />
+- <a href="http://csswizardry.com/2015/03/immutable-css/">Immutable CSS</a> by Harry Roberts<br />
+- <a href="http://eng.wealthfront.com/2013/08/functional-css-fcss.html">Functional CSS</a> by Wealthfront</p>
+
+<p>Thanks to <a href="https://twitter.com/paulozoom">Paulo Pereira</a>, <a href="https://twitter.com/colinstrickland">cms</a>, <a href="https://twitter.com/theefer">Sébastian Cevey</a>, <a href="https://twitter.com/jxnblk">Brent Jackson</a> for feedback on this post :)</p>
+
+  <div class="footer">
+    <p>
+    &mdash;
+    <time class="article-meta">
+      1 July 2015
+    </time>
+    </p>
+  </div>
+</div>
+
+</article>
+
+    </div>
+  </body>
+</html>
