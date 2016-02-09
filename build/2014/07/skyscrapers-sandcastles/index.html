@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>Skyscrapers & Sandcastles - Jon Gold - Designer & Technologist</title>
+  <meta name="author" content="Jon Gold">
+
+  
+  <meta name="description" content="There are two ways to build digital products — sandcastles or skyscrapers. They’re both effective, but care should be taken when mixing them.
+
+">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jon.gold/2014/07/skyscrapers-sandcastles/">
+  <link href="/public/favicon.ico" rel="icon">
+  <script src="//use.typekit.net/ioa0ewp.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
+  <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jon Gold - Designer & Technologist" type="application/atom+xml">
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22784947-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+<script type="text/javascript">
+  var GoSquared = {};
+  GoSquared.acct = "GSN-738889-F";
+  (function(w){
+    function gs(){
+      w._gstc_lt = +new Date;
+      var d = document, g = d.createElement("script");
+      g.type = "text/javascript";
+      g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+      var s = d.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(g, s);
+    }
+    w.addEventListener ?
+      w.addEventListener("load", gs, false) :
+      w.attachEvent("onload", gs);
+  })(window);
+</script>
+
+  <meta content="Jon Gold - Designer & Technologist" property="og:site_name">
+  
+  <meta content="Skyscrapers & Sandcastles" property="og:title">
+  
+  
+  <meta content="article" property="og:type">
+  
+  <meta content="There are two ways to build digital products — sandcastles or skyscrapers. They’re both effective, but care should be taken when mixing them.
+
+" property="og:description">
+  
+  <meta content="http://jon.gold/2014/07/skyscrapers-sandcastles/" property="og:url">
+  
+  
+  <meta content="2014-07-02T00:00:00+04:00" property="article:published_time">
+  <meta content="http://jon.gold" property="article:author">
+  
+  
+  <meta content="http://jon.gold/public/images/jongold-xoxo-2015.jpg" property="og:image">
+  
+  
+  
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@jongold">
+  
+  <meta content="Skyscrapers & Sandcastles" name="twitter:title">
+  
+
+  <meta content="There are two ways to build digital products — sandcastles or skyscrapers. They’re both effective, but care should be taken when mixing them.
+
+" property="twitter:description">
+
+  <meta name="twitter:creator" content="@jongold">
+  
+  <meta content="http://jon.gold/public/images/jongold-xoxo-2015.jpg" name="twitter:image:src">
+  
+  <meta name="twitter:domain" content="http://jon.gold">
+</head>
+
+  <body>
+    <div class="wrapper">
+      <header id="header">
+  <h1><a href="/">@jongold</a></h1>
+
+  
+</header>
+
+      <article class="post">
+
+
+
+<header>
+<h1>Skyscrapers & Sandcastles</h1>
+</header>
+
+
+
+<div class="article-content">
+<p>There are two ways to build digital products — sandcastles or skyscrapers. They’re both effective, but care should be taken when mixing them.</p>
+
+<h2 id="sandcastles">Sandcastles</h2>
+
+<p>Sandcastles are great for prototyping ideas. Whether it’s a weekend hackathon project, an afternoon messing around in a REPL, or a two week ‘JFDI’ sprint, it’s really powerful to be able to just get things out of your head, into a browser and in front of users.</p>
+
+<p>The CSS may be gross, the errors not handled and Ruby a little janky, but if you’re clear about <strong>why</strong> you’re hacking, hacking is a great tool to have. The quicker you can build, the quicker you can validate your ideas, and tight feedback loops are critical to making great products. Sandcastles don’t mind when they get washed away by the tide at the end of the day.</p>
+
+<p>Everything we built at <a href="http://makeshift.io">Makeshift</a> started out in this way - a hack that we built quickly and showed to users as soon as possible.</p>
+
+<h2 id="skyscrapers">Skyscrapers</h2>
+
+<p>That’s not to say that all products should start out as hacks. <em>Actually building things properly</em> also has it’s place. This is a weird paragraph to write, actually — I didn’t think I’d ever have to justify writing good code. But yeah. Some things you have to build properly to start with. Everything else should really end up being built properly <em>eventually</em>. There comes a point where you actually need things tested. You need modular, reusable code - a codebase that Google won’t laugh at when they inevitably acquihire you.</p>
+
+<p>And it’s that transition between the two that’s the difficult thing to manage.</p>
+
+<h2 id="no-total-rebuilds">“No total rebuilds”</h2>
+
+<p>So much has been written on the painful death-march that accompanies ground-up rebuilds of existing products. There will be day-long sprint planning meetings and a grumpy Product Manager yelling at you all the time and…</p>
+
+<p>Yup, not fun. Total rebuilds of big legacy products are a massive pain. But there’s one time that they’re justified.</p>
+
+<h2 id="skyscrapers-built-on-sandcastles">Skyscrapers built on sandcastles</h2>
+
+<p>In an early-stage startup, one of the surest ways to acquire a big, ganky, legacy codebase is to build a skyscraper on top of your sandcastle.</p>
+
+<p>After two weeks of heads-down hacking, you post <em>InstaYoDogBook.io</em> on <a href="http://www.producthunt.co/">Product Hunt</a>. The upvotes roll in. Dave Morin liked it; you get a one-sentence email from a VC. They want to give you 15 squillion dollars for 80% of your company. You get written up on TechCrunch, and some compromising photos from university get posted to ValleyWag. Success!</p>
+
+<p>Great scenario. Traction! People like your app! Let’s keep #hustling, right?</p>
+
+<p>Maybe you take a week or two off from the codebase to #GetOutOfTheBuilding and #TalkToUsers and #DoMoreLeanStuff. This goes well. Back to the code. There are bugs to squash and #JobsToBeDone to, er, be done.</p>
+
+<p>Fire up Vim. Shit. You realise that your first 10 000 users are all logging in through a 30 line <code>if</code> statement. That’s never going to hold up! What idiot wrote it? <code>git blame</code>. You did, apparently, but you have no recollection of it. Commit time? 4am. Commit blood-Red Bull level? Lots, probably. You look around, and the whole app is built like this. Who built that thing there? You did, too. Actually, you were being super lean and hacky and built the whole thing, it’s all your fault.</p>
+
+<p>This is your sandcastle. What you’ve done is built a very, very brittle product, very quickly. Your sandcastle was absolutely perfect for what you wanted when you were just trying to get something built before the tide came in, but it’s ill-equipped for your needs as you grow the product. How does any of this work? Why on <em>earth</em> did you call that variable <code>foo</code> and forget to rename it? This isn’t fun! Where do you go from here?</p>
+
+<p>Write some friggin’ tests, dummy! (Unless you’re DHH, in which case move swiftly along). You try—you try so hard—to pull the app back into a state which is manageable to build on. Add <code>rspec</code> and a bunch of trendy testing bits to your <code>Gemfile</code>. Every new class should have a Single Responsibility and follow the Law of Demeter and have descriptive method names and…you get the point. You turn over a new digital leaf and promise to do everything right in future.</p>
+
+<p>But things won’t change, I promise. Good code can’t be written on top of bad code, skyscrapers can’t be be built upon sandcastles. Validation is the most important thing when you’re building a product, but once you’ve got that you have to be ruthless and optimise for developer productivity. No one wants to work on a 2-month-old insta-legacy app.</p>
+
+<p>The good thing about being a few weeks or months into a product versus a 5 year old behemoth, though, is that you can quickly &amp; cheaply throw away everything you’ve done and do it again, properly, when the time is right.</p>
+
+<p>Don’t build skyscrapers when sandcastles will suffice, but when you move onto a skyscraper down the road, make sure you kick over that sandcastle and start again.</p>
+
+  <div class="footer">
+    <p>
+    &mdash;
+    <time class="article-meta">
+      2 July 2014
+    </time>
+    </p>
+  </div>
+</div>
+
+</article>
+
+    </div>
+  </body>
+</html>
