@@ -70,12 +70,12 @@ class Desktop extends Component {
   }
 
   renderWindows() {
-    this.props.windows.map((window, i) => {
-      switch (window.get('title')) {
+    return this.props.windows.map((win, i) => {
+      switch (win.get('title')) {
         case 'Habits':
           return (
             <Habits key={i}
-              id={window.get('id')}
+              id={win.get('id')}
               data={this.props.habits}
               x={300} y={60} z={i}
               onClickClose={this.onCloseWindow}
@@ -86,9 +86,9 @@ class Desktop extends Component {
           return (
             <Window
               key={i}
-              id={window.get('id')}
-              title={window.get('title')}
-              x={window.get('x')} y={window.get('y')} z={i}
+              id={win.get('id')}
+              title={win.get('title')}
+              x={win.get('x')} y={win.get('y')} z={i}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
             >
@@ -102,9 +102,9 @@ class Desktop extends Component {
           return (
             <MediaPlayer
               key={i}
-              id={window.get('id')}
-              title={window.get('title')}
-              x={window.get('x')} y={window.get('y')} z={i}
+              id={win.get('id')}
+              title={win.get('title')}
+              x={win.get('x')} y={win.get('y')} z={i}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
               clickPlaylistItem={this.onClickPlaylistItem}
@@ -117,9 +117,9 @@ class Desktop extends Component {
           return (
             <Window
               key={i}
-              id={window.get('id')}
-              title={window.get('title')}
-              x={window.get('x')} y={window.get('y')} z={i}
+              id={win.get('id')}
+              title={win.get('title')}
+              x={win.get('x')} y={win.get('y')} z={i}
               onClickClose={this.onCloseWindow}
             >
               <div
@@ -133,9 +133,9 @@ class Desktop extends Component {
           return (
             <Window
               key={i}
-              id={window.get('id')}
-              title={window.get('title')}
-              x={window.get('x')} y={window.get('y')} z={i}
+              id={win.get('id')}
+              title={win.get('title')}
+              x={win.get('x')} y={win.get('y')} z={i}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
             >
@@ -147,13 +147,14 @@ class Desktop extends Component {
           );
 
 
-        case 'Map':
+        case 'Nomad Travels':
           return (
             <Map
               key={i}
-              id={window.get('id')}
-              title={window.get('title')}
-              x={window.get('x')} y={window.get('y')} z={i}
+              id={win.get('id')}
+              title={win.get('title')}
+              x={win.get('x')} y={win.get('y')} z={i}
+              places={this.props.travel}
               height={480} width={640}
               onClickClose={this.onCloseWindow}
             />
@@ -194,6 +195,7 @@ Desktop.propTypes = {
   habits: PropTypes.array,
   books: IPropTypes.list,
   podcasts: IPropTypes.map,
+  travel: IPropTypes.list,
   connectDropTarget: PropTypes.func,
 };
 

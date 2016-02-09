@@ -9,6 +9,7 @@ const momentify = evolve({
 const bookSelector = (state) => state.get('books');
 const podcastSelector = (state) => state.get('podcasts');
 const windowsSelector = (state) => state.get('windows');
+const travelSelector = (state) => state.get('travel');
 
 const habitsSelector = createSelector(
   (state) => state.getIn(['habits']),
@@ -22,7 +23,8 @@ export default createSelector(
   podcastSelector,
   windowsSelector,
   habitsSelector,
-  (books, podcasts, windows, habits) => {
-    return ({ books, podcasts, windows, habits });
+  travelSelector,
+  (books, podcasts, windows, habits, travel) => {
+    return ({ books, podcasts, windows, habits, travel });
   }
 );
