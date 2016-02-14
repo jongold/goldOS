@@ -17,9 +17,9 @@ import 'file?name=[name].[ext]!./.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Router } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
-import FontFaceObserver from 'fontfaceobserver';
+// import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import { fromJS } from 'immutable';
@@ -29,17 +29,15 @@ const reduxRouterMiddleware = syncHistory(browserHistory);
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from './containers/App/styles.css';
-const openSansObserver = new FontFaceObserver('Open Sans', {});
+// const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add the js-open-sans-loaded class to the body
-openSansObserver.check().then(() => {
-  document.body.classList.add(styles.jsOpenSansLoaded);
-}, () => {
-  document.body.classList.remove(styles.jsOpenSansLoaded);
-});
+// openSansObserver.check().then(() => {
+//   document.body.classList.add(styles.jsOpenSansLoaded);
+// }, () => {
+//   document.body.classList.remove(styles.jsOpenSansLoaded);
+// });
 
-// Import the pages
-import App from 'App';
 
 /*
 *   Create the store with two middlewares :
@@ -62,6 +60,7 @@ if (module.hot) {
     store.replaceReducer(nextRootReducer);
   });
 }
+import routes from './routes';
 
 // Mostly boilerplate, except for the Routes. These are the pages you can go to,
 // which are all wrapped in the App component, which contains the navigation etc
@@ -69,26 +68,7 @@ if (module.hot) {
 // about the require.ensure code splitting business
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route component={App}>
-        <Route path="/"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('BootSequence').default);
-            }, 'BootSequence');
-          }}
-        />
-
-        <Route
-          path="/desktop"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('Desktop').default);
-            }, 'Desktop');
-          }}
-        />
-      </Route>
-    </Router>
+    <Router children={routes} history={browserHistory} />
   </Provider>,
   document.getElementById('app')
 );
