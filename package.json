@@ -8,7 +8,7 @@
     "basscss": "^7.1.0",
     "basscss-border-colors": "^1.1.1",
     "classnames": "^2.2.3",
-    "cursors": "git+ssh://git@github.com/jongold/cursors.git",
+    "cursors": "jongold/cursors",
     "d3": "^3.5.14",
     "fontfaceobserver": "^1.6.3",
     "immutable": "^3.7.6",
