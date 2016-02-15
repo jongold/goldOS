@@ -3,11 +3,12 @@ import { compose, max } from 'ramda';
 import { fromJS } from 'immutable';
 
 const initialState = fromJS([
-  { id: 5, title: 'Nomad Travels', x: 300, y: 60 },
-  { id: 1, title: 'Bookshelf', x: 300, y: 60 },
-  { id: 4, title: 'functional css', x: 600, y: 120 },
-  { id: 2, title: 'Podcasts', x: 20, y: 60 },
-  // { id: 3, title: 'Welcome', x: 20, y: 360 },
+  // { id: 5, title: 'Nomad Travels', x: 300, y: 60 },
+  // { id: 1, title: 'Bookshelf', x: 300, y: 60 },
+  // { id: 4, title: 'functional css', x: 600, y: 120 },
+  // { id: 2, title: 'Podcasts', x: 20, y: 60 },
+  { id: 3, title: 'Welcome', x: 20, y: 360 },
+  { id: 6, title: 'Habits', x: 20, y: 360 },
 ]);
 
 const round = n => (Math.round(n / 20) * 20);

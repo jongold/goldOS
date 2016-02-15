@@ -214,8 +214,68 @@ const initialState = fromJS([
   {
     date: '2016-02-05',
     meditate: true,
+    'no alcohol': false,
+    reading: false,
+  },
+  {
+    date: '2016-02-06',
+    meditate: false,
+    'no alcohol': true,
+    reading: true,
+  },
+  {
+    date: '2016-02-07',
+    meditate: false,
     'no alcohol': true,
     reading: false,
+  },
+  {
+    date: '2016-02-08',
+    meditate: false,
+    'no alcohol': true,
+    reading: false,
+  },
+  {
+    date: '2016-02-09',
+    meditate: false,
+    'no alcohol': true,
+    reading: false,
+  },
+  {
+    date: '2016-02-10',
+    meditate: true,
+    'no alcohol': true,
+    reading: true,
+  },
+  {
+    date: '2016-02-11',
+    meditate: false,
+    'no alcohol': true,
+    reading: true,
+  },
+  {
+    date: '2016-02-12',
+    meditate: true,
+    'no alcohol': false,
+    reading: true,
+  },
+  {
+    date: '2016-02-13',
+    meditate: false,
+    'no alcohol': false,
+    reading: true,
+  },
+  {
+    date: '2016-02-14',
+    meditate: false,
+    'no alcohol': true,
+    reading: true,
+  },
+  {
+    date: '2016-02-15',
+    meditate: true,
+    'no alcohol': true,
+    reading: true,
   },
 ]);
 

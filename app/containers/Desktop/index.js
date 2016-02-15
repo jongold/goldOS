@@ -12,25 +12,21 @@ import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { selectPlaylistItem, selectWindow, closeWindow, moveWindow } from '../App/actions';
-import { compose } from 'ramda';
-
 import selector from './selector';
 
-import Book from 'Book';
+import Bookshelf from 'Bookshelf';
 import Habits from 'Habits';
 import Map from 'Map';
 import MediaPlayer from 'MediaPlayer';
-import Window from 'Window';
+import Post from 'Post';
 import img from './avatar.png';
 
-import fcssPost from '../../posts/fcss.md';
 import welcomePost from '../../posts/welcome.md';
 
 const windowTarget = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
     const delta = monitor.getDifferenceFromInitialOffset();
-    // const { id } = item
     const x = Math.round(item.x + delta.x);
     const y = Math.round(item.y + delta.y);
 
@@ -38,6 +34,11 @@ const windowTarget = {
   },
 };
 
+@connect(selector)
+@DragDropContext(HTML5Backend)
+@DropTarget(ItemTypes.WINDOW, windowTarget, dropConnect => ({
+  connectDropTarget: dropConnect.dropTarget(),
+}))
 class Desktop extends Component {
   constructor() {
     super();
@@ -76,32 +77,29 @@ class Desktop extends Component {
           return (
             <Habits key={i}
               id={win.get('id')}
+              title={win.get('title')}
               data={this.props.habits}
-              x={300} y={60} z={i}
+              x={win.get('x')} y={win.get('y')} z={i}
+              onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
             />
           );
 
         case 'Bookshelf':
           return (
-            <Window
-              key={i}
+            <Bookshelf key={i}
               id={win.get('id')}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={i}
+              books={this.props.books}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
-            >
-              <div className="flex flex-wrap p2">
-                {this.props.books.map((book, j) => <Book item={book} key={j} />)}
-              </div>
-            </Window>
+            />
           );
 
         case 'Podcasts':
           return (
-            <MediaPlayer
-              key={i}
+            <MediaPlayer key={i}
               id={win.get('id')}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={i}
@@ -115,37 +113,15 @@ class Desktop extends Component {
 
         case 'Welcome':
           return (
-            <Window
+            <Post
               key={i}
               id={win.get('id')}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={i}
+              content={welcomePost}
               onClickClose={this.onCloseWindow}
-            >
-              <div
-                className="h6 p2"
-                dangerouslySetInnerHTML={{ __html: welcomePost }}
-              />
-            </Window>
+            />
           );
-
-        case 'functional css':
-          return (
-            <Window
-              key={i}
-              id={win.get('id')}
-              title={win.get('title')}
-              x={win.get('x')} y={win.get('y')} z={i}
-              onSelect={this.onSelectWindow}
-              onClickClose={this.onCloseWindow}
-            >
-              <div className="h6 p2 overflow-scroll"
-                style={{ maxHeight: '640px' }}
-                dangerouslySetInnerHTML={{ __html: fcssPost }}
-              />
-            </Window>
-          );
-
 
         case 'Nomad Travels':
           return (
@@ -171,7 +147,8 @@ class Desktop extends Component {
 
     return connectDropTarget(
       <div
-        style={{ background: `no-repeat center center url(${img}) 50% auto`, backgroundColor: '#DFBA69' }}
+        style={{ background: `no-repeat center center url('${img}')`,
+          backgroundSize: `50% auto`, backgroundColor: '#DFBA69' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default"
       >
         <div className="bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex">
@@ -199,10 +176,4 @@ Desktop.propTypes = {
   connectDropTarget: PropTypes.func,
 };
 
-export default compose(
-  connect(selector),
-  DragDropContext(HTML5Backend),
-  DropTarget(ItemTypes.WINDOW, windowTarget, dropConnect => ({
-    connectDropTarget: dropConnect.dropTarget(),
-  }))
-)(Desktop);
+export default Desktop;

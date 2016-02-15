@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { ItemTypes } from '../../containers/App/constants';
 import { DragSource } from 'react-dnd';
-
+import { immutableRenderDecorator } from 'react-immutable-render-mixin';
 import TrafficLights from './TrafficLights';
 
 const windowSource = {
@@ -17,6 +17,8 @@ function collect(connect, monitor) {
   };
 }
 
+@DragSource(ItemTypes.WINDOW, windowSource, collect)
+@immutableRenderDecorator
 class Window extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -34,6 +36,7 @@ class Window extends Component {
   };
 
   render() {
+    console.log('render window', this.props.title);
     const { connectDragSource, isDragging } = this.props;
 
     const contentStyle = {
@@ -65,7 +68,7 @@ class Window extends Component {
   }
 }
 
-export default DragSource(ItemTypes.WINDOW, windowSource, collect)(Window);
+export default Window;
 
 const WindowTitle = ({ title, onClickClose, id }) => {
   const cx = 'flex flex-center border-bottom border-gold px1 py1 js-handle';
