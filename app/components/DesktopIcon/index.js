@@ -5,7 +5,7 @@ const size = 72;
 export default function DesktopIcon({ title, onClick }) {
   const fn = onClick.bind(this, title);
   return (
-    <div className="mb2 ml2"
+    <div className="px1 mb2 ml2 flex flex-column flex-center"
       onClick={fn}
     >
       <div className="bg-darken-2 mb1 flex align-center center white flex-justify rounded-2"
