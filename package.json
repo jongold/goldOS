@@ -10,6 +10,7 @@
     "classnames": "^2.2.3",
     "cursors": "jongold/cursors",
     "d3": "^3.5.14",
+    "express": "^4.13.4",
     "fontfaceobserver": "^1.6.3",
     "immutable": "^3.7.6",
     "moment": "^2.11.2",
@@ -97,10 +98,11 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "start": "NODE_ENV=development node webpack/server.dev.js",
+    "start": "node webpack/prodserver.js",
     "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
+    "postinstall": "npm run build",
     "setup": "NODE_ENV=initialisation ./webpack/init",
     "lint:js": "eslint .",
     "lint:css": "stylelint ./app/**/*.css",
