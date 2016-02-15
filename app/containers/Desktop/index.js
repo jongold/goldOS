@@ -11,7 +11,8 @@ import { ItemTypes } from '../../containers/App/constants';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { selectPlaylistItem, selectWindow, closeWindow, moveWindow } from '../App/actions';
+import { selectPlaylistItem, selectWindow, openWindow, closeWindow, moveWindow,
+} from '../App/actions';
 import selector from './selector';
 
 import Bookshelf from 'Bookshelf';
@@ -64,8 +65,8 @@ class Desktop extends Component {
     this.props.dispatch(closeWindow(id));
   }
 
-  onClickDesktopIcon(icon) {
-    console.log(icon);
+  onClickDesktopIcon(title) {
+    this.props.dispatch(openWindow(title));
   }
 
   onClickPlaylistItem(item) {
@@ -129,7 +130,7 @@ class Desktop extends Component {
             />
           );
 
-        case 'Nomad Travels':
+        case 'Hello World':
           return (
             <Map
               key={i}
@@ -149,11 +150,11 @@ class Desktop extends Component {
 
   renderIcons() {
     const icons = [
-      'Travels',
-      'Bookshelf',
-      'Podcasts',
       'Welcome',
+      'Hello World',
+      'Bookshelf',
       'Habits',
+      'Podcasts',
     ];
 
     return (

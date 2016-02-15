@@ -1,15 +1,10 @@
-import { SELECT_WINDOW, CLOSE_WINDOW, MOVE_WINDOW } from './constants';
+import { SELECT_WINDOW, OPEN_WINDOW, CLOSE_WINDOW, MOVE_WINDOW } from './constants';
 import { compose, max } from 'ramda';
-import { fromJS } from 'immutable';
+import { fromJS, Map, OrderedSet } from 'immutable';
 
-const initialState = fromJS([
-  // { id: 5, title: 'Nomad Travels', x: 300, y: 60 },
-  // { id: 1, title: 'Bookshelf', x: 300, y: 60 },
-  // { id: 4, title: 'functional css', x: 600, y: 120 },
-  // { id: 2, title: 'Podcasts', x: 20, y: 60 },
-  { id: 3, title: 'Welcome', x: 20, y: 360 },
-  { id: 6, title: 'Habits', x: 20, y: 360 },
-]);
+const initialState = OrderedSet.of(
+  Map({ id: 0, title: 'Welcome', x: 20, y: 60 }),
+);
 
 const round = n => (Math.round(n / 20) * 20);
 
@@ -24,25 +19,43 @@ const roundY = compose(
 );
 
 function formReducer(state = initialState, action) {
+  let win;
   switch (action.type) {
-    case SELECT_WINDOW:
-      const win = state.find((w) => w.get('id') === action.data);
+    case OPEN_WINDOW:
+      const foo = state.find((w) => w.get('title') === action.data);
+      if (foo) {
+        return state.delete(foo).add(foo);
+      }
+      const lastItem = state.last();
+      const item = fromJS({
+        id: state.size,
+        x: lastItem ? lastItem.get('x') + 38 : 40,
+        y: lastItem ? lastItem.get('y') + 38 : 40,
+        title: action.data,
+      });
 
-      return state.filterNot((w) => w.get('id') === action.data)
-                  .push(win);
+      return state.add(item);
+
+    case SELECT_WINDOW:
+      win = state.find((w) => w.get('id') === action.data);
+
+      return state.delete(win)
+                  .add(win);
 
     case CLOSE_WINDOW:
-      return state.filterNot((w) => w.get('id') === action.data);
+      win = state.find((w) => w.get('id') === action.data);
+
+      return state.delete(win);
 
     case MOVE_WINDOW:
       const { id, x, y } = action.data;
 
-      const newWin = state.find((w) => w.get('id') === id)
-                          .set('x', roundX(x))
-                          .set('y', roundY(y));
+      win = state.find((w) => w.get('id') === id);
+      const newWin = win.set('x', roundX(x))
+        .set('y', roundY(y));
 
-      const newState = state.filterNot((w) => w.get('id') === id)
-                            .push(newWin);
+      const newState = state.delete(win)
+                            .add(newWin);
       return newState;
 
     default:
