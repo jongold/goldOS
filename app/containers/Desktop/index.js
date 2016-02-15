@@ -15,6 +15,7 @@ import { selectPlaylistItem, selectWindow, closeWindow, moveWindow } from '../Ap
 import selector from './selector';
 
 import Bookshelf from 'Bookshelf';
+import DesktopIcon from 'DesktopIcon';
 import Habits from 'Habits';
 import Map from 'Map';
 import MediaPlayer from 'MediaPlayer';
@@ -46,6 +47,7 @@ class Desktop extends Component {
     this.onClickPlaylistItem = this.onClickPlaylistItem.bind(this);
     this.onSelectWindow = this.onSelectWindow.bind(this);
     this.onCloseWindow = this.onCloseWindow.bind(this);
+    this.onClickDesktopIcon = this.onClickDesktopIcon.bind(this);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
@@ -60,6 +62,10 @@ class Desktop extends Component {
 
   onCloseWindow(id) {
     this.props.dispatch(closeWindow(id));
+  }
+
+  onClickDesktopIcon(icon) {
+    console.log(icon);
   }
 
   onClickPlaylistItem(item) {
@@ -141,6 +147,25 @@ class Desktop extends Component {
     });
   }
 
+  renderIcons() {
+    const icons = [
+      'Travels',
+      'Bookshelf',
+      'Podcasts',
+      'Welcome',
+      'Habits',
+    ];
+
+    return (
+      <ul className="flex flex-auto flex-column px2 py2 mt3"
+        style={{ flexWrap: 'wrap-reverse', justifyContent: 'flex-start',
+          alignItems: 'flex-start', alignContent: 'flexStart' }}
+      >
+        {icons.map((icon) => <DesktopIcon title={icon} onClick={this.onClickDesktopIcon} />)}
+      </ul>
+    );
+  }
+
   render() {
     const { windows, connectDropTarget } = this.props;
     const title = windows.last() ? windows.last().get('title') : 'goldOS';
@@ -161,6 +186,7 @@ class Desktop extends Component {
           <div className="px2">Help</div>
         </div>
         {this.renderWindows()}
+        {this.renderIcons()}
       </div>
     );
   }
