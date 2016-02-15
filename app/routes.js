@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router';
 import App from './containers/App';
+import BootSequence from './containers/BootSequence';
+import Desktop from './containers/Desktop';
 
 if (typeof require.ensure !== 'function') {
   require.ensure = (d, c) => c(require);
@@ -10,20 +12,12 @@ if (typeof require.ensure !== 'function') {
 export default (
   <Route component={App}>
     <Route path="/"
-      getComponent={function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('./containers/BootSequence').default);
-        }, 'BootSequence');
-      }}
+      component={BootSequence}
     />
 
     <Route
       path="/desktop"
-      getComponent={function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('./containers/Desktop').default);
-        }, 'Desktop');
-      }}
+      component={Desktop}
     />
   </Route>
 );

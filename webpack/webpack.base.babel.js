@@ -3,7 +3,7 @@
  */
 
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 
 module.exports = (options) => {
   return {
@@ -35,7 +35,7 @@ module.exports = (options) => {
       }],
     },
     plugins: options.plugins.concat([
-      new webpack.optimize.CommonsChunkPlugin('common.js'),
+      // new webpack.optimize.CommonsChunkPlugin('common.js'),
     ]),
     postcss: () => options.postcssPlugins,
     resolve: {
