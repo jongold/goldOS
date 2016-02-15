@@ -10,17 +10,11 @@ import states from 'json!./states.topojson';
 
 import { createElement } from 'react-faux-dom';
 
+import { immutableRenderDecorator } from 'react-immutable-render-mixin';
 import Window from 'Window';
 
+@immutableRenderDecorator
 class Map extends Component {
-
-  shouldComponentUpdate(nextProps) {
-    const { x, y, z, places } = this.props;
-    const { x: x1, y: y1, z: z1, places: places1 } = nextProps;
-
-    return x !== x1 || y !== y1 || z !== z1 || places !== places1;
-  }
-
   render() {
     console.log('render map');
     const visited = this.props.places.toJS();
@@ -110,7 +104,7 @@ class Map extends Component {
       .attr('class', 'stroke-white');
 
     return (
-      <Window title={title} height={240} width={260} {...this.props}>
+      <Window height={240} width={260} {...this.props}>
         <div className="p1">
           {node.toReact()}
         </div>

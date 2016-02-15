@@ -3,14 +3,16 @@ import d3 from 'd3';
 import { createElement } from 'react-faux-dom';
 import Window from 'Window';
 import { compose, curry } from 'ramda';
+import { immutableRenderDecorator } from 'react-immutable-render-mixin';
 
+@immutableRenderDecorator
 export default class Habits extends Component {
   renderHabit(prop) {
     const node = createElement('svg');
     const width = 134 + 2;
     const cellSize = 7;
     const margin = 6;
-    const height = 6 * (margin + (2 * cellSize));
+    const height = 10 * (margin + (2 * cellSize));
 
     const svg = d3.select(node)
       .attr('width', width)
@@ -65,7 +67,7 @@ export default class Habits extends Component {
 
   render() {
     return (
-      <Window title="Habits">
+      <Window {...this.props}>
         <div className="p2 flex">
           {this.renderHabit('meditate')}
           {this.renderHabit('no alcohol')}

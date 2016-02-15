@@ -4,18 +4,13 @@ import classNames from 'classnames';
 
 import { SoundPlayerContainer } from 'react-soundplayer/addons';
 import MediaControls from './MediaControls';
+import { immutableRenderDecorator } from 'react-immutable-render-mixin';
 import Window from 'Window';
 
 const CLIENT_ID = '08f79801a998c381762ec5b15e4914d5';
 
+@immutableRenderDecorator
 class MediaPlayer extends Component {
-  shouldComponentUpdate(nextProps) {
-    const { x, y, z, items, current } = this.props;
-    const { x: x1, y: y1, z: z1, items: items1, current: current1 } = nextProps;
-
-    return x !== x1 || y !== y1 || z !== z1 || items !== items1 || current !== current1;
-  }
-
   render() {
     console.log('render media player');
     const { title, items, current, clickPlaylistItem } = this.props;
