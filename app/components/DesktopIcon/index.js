@@ -1,15 +1,23 @@
 import React from 'react';
+import { compose, join, split, toLower } from 'ramda';
+
+// String -> String
+const lowerHyphenate = compose(toLower, join('-'), split(' '));
+
+// String -> String
+const iconUrl = title => `./icons_${lowerHyphenate(title)}.svg`;
 
 const size = 72;
 
 export default function DesktopIcon({ title, onClick }) {
   const fn = onClick.bind(this, title);
+  const src = iconUrl(title);
   return (
     <div className="px1 mb2 ml2 flex flex-column flex-center"
       onClick={fn}
     >
-      <div className="bg-darken-2 mb1 flex align-center center white flex-justify rounded-2"
-        style={{ height: size, width: size }}
+      <div className="flex-justify"
+        style={{ backgroundImage: `url(${src})`, height: size, width: size }}
       >
       </div>
       <span className="block center h6 bold white">

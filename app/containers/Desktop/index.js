@@ -155,6 +155,8 @@ class Desktop extends Component {
       'Bookshelf',
       'Habits',
       'Podcasts',
+      'Speaking',
+      'Contact',
     ];
 
     return (
@@ -162,7 +164,12 @@ class Desktop extends Component {
         style={{ flexWrap: 'wrap-reverse', justifyContent: 'flex-start',
           alignItems: 'center', alignContent: 'center' }}
       >
-        {icons.map((icon) => <DesktopIcon title={icon} onClick={this.onClickDesktopIcon} />)}
+        {icons.map((icon) => <DesktopIcon
+          key={icon}
+          title={icon}
+          onClick={this.onClickDesktopIcon}
+        />
+        )}
       </ul>
     );
   }
