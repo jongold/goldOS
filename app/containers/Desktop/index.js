@@ -66,7 +66,7 @@ class Desktop extends Component {
   }
 
   onClickDesktopIcon(title) {
-    this.props.dispatch(openWindow(title));
+    this.props.dispatch(routeActions.push(`/desktop/${title}`));
   }
 
   onClickPlaylistItem(item) {

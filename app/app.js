@@ -49,15 +49,33 @@ if (module.hot) {
     store.replaceReducer(nextRootReducer);
   });
 }
-import routes from './routes';
+import { Route } from 'react-router';
+import App from './containers/App';
+import BootSequence from './containers/BootSequence';
+import Desktop from './containers/Desktop';
 
-// Mostly boilerplate, except for the Routes. These are the pages you can go to,
-// which are all wrapped in the App component, which contains the navigation etc
-// See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
-// about the require.ensure code splitting business
+import { openWindow } from './containers/App/actions';
+
+function onEnterDesktop(nextState) {
+  const title = nextState.params.windowTitle || 'Welcome';
+  return store.dispatch(openWindow(title));
+}
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router children={routes} history={browserHistory} />
-  </Provider>,
-  document.getElementById('app')
+    <Router history={browserHistory}>
+      <Route component={App}>
+        <Route path="/"
+          component={BootSequence}
+        />
+
+      <Route
+        path="/desktop(/:windowTitle)"
+        component={Desktop}
+        onEnter={onEnterDesktop}
+      />
+    </Route>
+  </Router>
+</Provider>,
+document.getElementById('app')
 );

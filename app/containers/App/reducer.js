@@ -2,9 +2,7 @@ import { SELECT_WINDOW, OPEN_WINDOW, CLOSE_WINDOW, MOVE_WINDOW } from './constan
 import { compose, max } from 'ramda';
 import { Map, OrderedMap } from 'immutable';
 
-const initialState = new OrderedMap({
-  0: Map({ title: 'Welcome', x: 20, y: 60 }),
-});
+const initialState = new OrderedMap({});
 
 function round(n) {
   return (Math.round(n / 20) * 20);
