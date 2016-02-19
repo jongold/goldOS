@@ -14,8 +14,8 @@
 }
 
 .console-text {
-  text-shadow: 0px 0px 2px rgba(10, 255, 10, .8), 0px 0px 8px rgba(10, 255, 10, .6);
-  color: hsl(139, 100%, 55%);
+  text-shadow: 0px 0px 2px hsla(41, 65%, 64%, .8), 0px 0px 8px hsla(41, 65%, 64%, .6);
+  color: hsl(41, 65%, 64%);
   opacity: .99;
   margin-bottom: 0;
 }
@@ -41,7 +41,7 @@ body::before{
 
 .bootscreen {
   opacity: 0;
-  background: radial-gradient(ellipse at center, hsla(148, 100%, 50%, 0.2) 0%,hsla(0, 100%, 100%, 0) 100%);
+  background: radial-gradient(ellipse at center, hsla(41, 65%, 64%, 0.2) 0%,hsla(0, 100%, 100%, 0) 100%);
 }
 
 .bootscreen--show {
@@ -65,14 +65,14 @@ body::before{
   0% {
     opacity: 0.0;
     transform: scale(0.5, 0.005);
-    box-shadow: inset 0 9999px 0 hsl(139, 100%, 55%);
+    box-shadow: inset 0 9999px 0 hsl(41, 65%, 64%);
   }
   40% {
     opacity: 1.0;
   }
   70% {
     transform: scale(1.0, 0.005);
-    box-shadow: inset 0 9999px 0 hsl(139, 100%, 55%);
+    box-shadow: inset 0 9999px 0 hsl(41, 65%, 64%);
   }
   100% {
     transform: scale(1.0, 1.0);
