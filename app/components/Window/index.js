@@ -31,8 +31,6 @@ class Window extends Component {
     width: PropTypes.number,
     onSelect: PropTypes.func,
     onClickClose: PropTypes.func,
-    connectDragSource: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired,
   };
 
   render() {
