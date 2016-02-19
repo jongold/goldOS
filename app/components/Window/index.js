@@ -52,7 +52,8 @@ class Window extends Component {
     };
 
     return connectDragSource(
-      <div style={wrapperStyle}
+      <div
+        style={wrapperStyle}
         className="bg-white absolute rounded-2 border border-gold gold"
       >
         <WindowTitle
@@ -70,7 +71,7 @@ class Window extends Component {
 
 export default Window;
 
-const WindowTitle = ({ title, onClickClose, id }) => {
+function WindowTitle({ title, onClickClose, id }) {
   const cx = 'flex flex-center border-bottom border-gold px1 py1 js-handle';
 
   const fn = onClickClose.bind(this, id);
@@ -89,4 +90,4 @@ const WindowTitle = ({ title, onClickClose, id }) => {
       </span>
     </div>
   );
-};
+}
