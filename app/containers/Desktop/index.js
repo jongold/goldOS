@@ -78,15 +78,17 @@ class Desktop extends Component {
   }
 
   renderWindows() {
-    return this.props.windows.map((win, i) => {
+    let zIndex = 0;
+
+    return this.props.windows.map((win, key) => {
       switch (win.get('title')) {
         case 'Habits':
           return (
-            <Habits key={i}
-              id={win.get('id')}
+            <Habits key={key}
+              id={key}
               title={win.get('title')}
               data={this.props.habits}
-              x={win.get('x')} y={win.get('y')} z={i}
+              x={win.get('x')} y={win.get('y')} z={zIndex++}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
             />
@@ -94,10 +96,10 @@ class Desktop extends Component {
 
         case 'Bookshelf':
           return (
-            <Bookshelf key={i}
-              id={win.get('id')}
+            <Bookshelf key={key}
+              id={key}
               title={win.get('title')}
-              x={win.get('x')} y={win.get('y')} z={i}
+              x={win.get('x')} y={win.get('y')} z={zIndex++}
               books={this.props.books}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
@@ -106,10 +108,10 @@ class Desktop extends Component {
 
         case 'Podcasts':
           return (
-            <MediaPlayer key={i}
-              id={win.get('id')}
+            <MediaPlayer key={key}
+              id={key}
               title={win.get('title')}
-              x={win.get('x')} y={win.get('y')} z={i}
+              x={win.get('x')} y={win.get('y')} z={zIndex++}
               onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
               clickPlaylistItem={this.onClickPlaylistItem}
@@ -120,11 +122,10 @@ class Desktop extends Component {
 
         case 'Welcome':
           return (
-            <Post
-              key={i}
-              id={win.get('id')}
+            <Post key={key}
+              id={key}
               title={win.get('title')}
-              x={win.get('x')} y={win.get('y')} z={i}
+              x={win.get('x')} y={win.get('y')} z={zIndex++}
               content={welcomePost}
               onClickClose={this.onCloseWindow}
             />
@@ -132,11 +133,10 @@ class Desktop extends Component {
 
         case 'Hello World':
           return (
-            <Map
-              key={i}
-              id={win.get('id')}
+            <Map key={key}
+              id={key}
               title={win.get('title')}
-              x={win.get('x')} y={win.get('y')} z={i}
+              x={win.get('x')} y={win.get('y')} z={zIndex++}
               places={this.props.travel}
               height={480} width={640}
               onClickClose={this.onCloseWindow}

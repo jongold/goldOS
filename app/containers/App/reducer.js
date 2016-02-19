@@ -1,12 +1,14 @@
 import { SELECT_WINDOW, OPEN_WINDOW, CLOSE_WINDOW, MOVE_WINDOW } from './constants';
 import { compose, max } from 'ramda';
-import { fromJS, Map, OrderedSet } from 'immutable';
+import { Map, OrderedMap } from 'immutable';
 
-const initialState = OrderedSet.of(
-  Map({ id: 0, title: 'Welcome', x: 20, y: 60 }),
-);
+const initialState = new OrderedMap({
+  0: Map({ title: 'Welcome', x: 20, y: 60 }),
+});
 
-const round = n => (Math.round(n / 20) * 20);
+function round(n) {
+  return (Math.round(n / 20) * 20);
+}
 
 const roundX = compose(
   max(20),
@@ -19,48 +21,46 @@ const roundY = compose(
 );
 
 function formReducer(state = initialState, action) {
-  let win;
   switch (action.type) {
-    case OPEN_WINDOW:
-      const foo = state.find((w) => w.get('title') === action.data);
-      if (foo) {
-        return state.delete(foo).add(foo);
+    case OPEN_WINDOW: {
+      const isOpen = state.findEntry((w) => w.get('title') === action.data);
+      if (isOpen) {
+        const [k, v] = isOpen;
+        return state.withMutations(s => s.delete(k).set(k, v));
       }
+
+      const id = state.size;
       const lastItem = state.last();
-      const item = fromJS({
-        id: state.size,
+      const item = new Map({
         x: lastItem ? lastItem.get('x') + 38 : 40,
         y: lastItem ? lastItem.get('y') + 38 : 40,
         title: action.data,
       });
 
-      return state.add(item);
+      return state.set(id, item);
+    }
 
-    case SELECT_WINDOW:
-      win = state.find((w) => w.get('id') === action.data);
+    case SELECT_WINDOW: {
+      const id = action.data;
+      const win = state.get(id);
 
-      return state.delete(win)
-                  .add(win);
+      return state.withMutations(s => s.delete(id).set(id, win));
+    }
 
-    case CLOSE_WINDOW:
-      win = state.find((w) => w.get('id') === action.data);
+    case CLOSE_WINDOW: {
+      return state.delete(action.data);
+    }
 
-      return state.delete(win);
-
-    case MOVE_WINDOW:
+    case MOVE_WINDOW: {
       const { id, x, y } = action.data;
+      const newWin = state.get(id).merge({ x: roundX(x), y: roundY(y) });
 
-      win = state.find((w) => w.get('id') === id);
-      const newWin = win.set('x', roundX(x))
-        .set('y', roundY(y));
+      return state.withMutations(s => s.delete(id).set(id, newWin));
+    }
 
-      const newState = state.delete(win)
-                            .add(newWin);
-      return newState;
-
-    default:
+    default: {
       return state;
-
+    }
   }
 }
 
