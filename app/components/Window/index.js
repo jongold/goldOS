@@ -22,7 +22,7 @@ function collect(connect, monitor) {
 class Window extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     x: PropTypes.number,
     y: PropTypes.number,
     z: PropTypes.number,
