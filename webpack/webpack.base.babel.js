@@ -24,6 +24,9 @@ module.exports = (options) => {
         test: /\.css$/, // Transform all .css files required somewhere with PostCSS
         loader: options.cssLoaders,
       }, {
+        test: /\.svg$/i,
+        loaders: ['react-svgdom', 'svgo'],
+      }, {
         test: /\.jpe?g$|\.gif$|\.png$/i,
         loader: 'url-loader?limit=10000',
       }, {
