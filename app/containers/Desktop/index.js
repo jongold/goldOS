@@ -84,7 +84,8 @@ class Desktop extends Component {
       switch (win.get('title')) {
         case 'Habits':
           return (
-            <Habits key={key}
+            <Habits
+              key={key}
               id={key}
               title={win.get('title')}
               data={this.props.habits}
@@ -96,7 +97,8 @@ class Desktop extends Component {
 
         case 'Bookshelf':
           return (
-            <Bookshelf key={key}
+            <Bookshelf
+              key={key}
               id={key}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
@@ -108,7 +110,8 @@ class Desktop extends Component {
 
         case 'Podcasts':
           return (
-            <MediaPlayer key={key}
+            <MediaPlayer
+              key={key}
               id={key}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
@@ -122,7 +125,8 @@ class Desktop extends Component {
 
         case 'Welcome':
           return (
-            <Post key={key}
+            <Post
+              key={key}
               id={key}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
@@ -133,7 +137,8 @@ class Desktop extends Component {
 
         case 'Hello World':
           return (
-            <Map key={key}
+            <Map
+              key={key}
               id={key}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
@@ -145,7 +150,7 @@ class Desktop extends Component {
         default:
           return null;
       }
-    });
+    }).valueSeq();
   }
 
   renderIcons() {
