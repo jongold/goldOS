@@ -190,9 +190,9 @@
       }
     },
     "build": {
-      "command": "webpack --verbose --colors --display-error-details --config webpack/dev.config.js",
+      "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "production"
       }
     }
   },
