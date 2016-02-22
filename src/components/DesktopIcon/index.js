@@ -10,7 +10,11 @@ const iconUrl = title => `./icons_${lowerHyphenate(title)}.svg`;
 const size = 72;
 
 export default function DesktopIcon({ title, onClick }) {
-  const fn = onClick.bind(this, title);
+  const fn = (e) => {
+    e.preventDefault()
+    return onClick(title);
+  }
+
   const src = require(iconUrl(title));
   return (
     <div className="px1 mb2 ml2 flex flex-column flex-center"
