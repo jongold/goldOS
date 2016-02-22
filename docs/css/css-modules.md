@@ -1,5 +1,0 @@
-# CSS Modules
-
-## Why?
-
-## How?
