@@ -13,15 +13,12 @@ var assetsPath = path.resolve(projectRootPath, './static/dist');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
-var NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
   entry: {
     'main': [
-      // 'bootstrap-sass!./src/theme/bootstrap.config.prod.js',
-      // 'font-awesome-webpack!./src/theme/font-awesome.config.prod.js',
       './src/client.js'
     ]
   },
@@ -33,15 +30,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
+      { test: /\.js$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
+      { test: /\.(geo|topo)?json$/, loader: 'json-loader' },
+      { test: /\.css$/, loader: 'style-loader!css-loader!cssnext-loader' },
+      { test: /\.md$/, loader: 'html!markdown' },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
       { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
       { test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
     ]
   },
@@ -54,7 +50,6 @@ module.exports = {
     extensions: ['', '.json', '.js', '.jsx']
   },
   plugins: [
-    new NpmInstallPlugin(),
     new CleanPlugin([assetsPath], { root: projectRootPath }),
 
     // css files from the extract-text-plugin loader
