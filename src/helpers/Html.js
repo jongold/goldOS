@@ -39,6 +39,7 @@ export default class Html extends Component {
 
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link href="//cloud.webtype.com/css/bad02e8c-4481-4e1b-b838-01fe14c932f1.css" rel="stylesheet" type="text/css" />
 
 
           {/* styles (will be present only in production with webpack extract text plugin) */}
@@ -49,7 +50,7 @@ export default class Html extends Component {
           {/* resolves the initial style flash (flicker) on page load in development mode */}
           { emptyKeys(assets.styles) ? <style dangerouslySetInnerHTML={{__html: require('containers/App/styles.css')}}/> : null }
         </head>
-        <body>
+        <body class="overflow-hidden">
           <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
           <script src={assets.javascript.main} charSet="UTF-8"/>
