@@ -2,13 +2,15 @@ import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createMiddleware from './middleware/clientMiddleware';
 import { syncHistory } from 'react-router-redux';
 import { fromJS } from 'immutable';
+import thunk from 'redux-thunk';
 
 export default function createStore(history, client, data) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = syncHistory(history);
 
-  const middleware = [createMiddleware(client), reduxRouterMiddleware];
+  const middleware = [thunk, /*createMiddleware(client),*/ reduxRouterMiddleware];
 
+  console.log(middleware)
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
     const { persistState } = require('redux-devtools');
@@ -23,15 +25,12 @@ export default function createStore(history, client, data) {
   }
 
   const reducer = require('./modules/reducer');
-  // console.log(reducer)
   data = fromJS({});
   const store = finalCreateStore(reducer, data);
 
   reduxRouterMiddleware.listenForReplays(store, (state) => {
     return state.getIn(['route', 'location']).toJS();
   });
-
-  // console.log(store.getState());
 
   if (__DEVELOPMENT__ && module.hot) {
     module.hot.accept('./modules/reducer', () => {

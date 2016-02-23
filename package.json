@@ -81,6 +81,7 @@
     "redux-async-connect": "^1.0.0-rc2",
     "redux-immutable": "^3.0.3",
     "redux-saga": "0.6.0",
+    "redux-thunk": "^1.0.3",
     "reselect": "2.0.2",
     "sanitize.css": "^3.0.0",
     "scroll-behavior": "^0.3.2",

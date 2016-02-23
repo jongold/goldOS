@@ -1,16 +1,21 @@
 import { fromJS } from 'immutable';
+import { LOAD_BOOKS } from './constants';
 
-const initialState = fromJS([
-  { title: 'Mindfulness in Plain English' },
-  { title: 'The Artist\'s Way' },
-  { title: 'Big Magic' },
-  { title: 'Deep Work' },
-  { title: 'Act Accordingly' },
-  { title: 'Get Some Headspace' },
-  { title: '10% Happier' },
-  { title: 'Hardcore Zen' },
-]);
+const initialState = fromJS({
+  loaded: false,
+  books: []
+})
 
-export default function booksReducer(state = initialState) {
-  return state;
+export default function booksReducer(state = initialState, action) {
+  switch (action.type) {
+    case LOAD_BOOKS: {
+      return state.withMutations(map => {
+        return map.set('loaded', true).set('books', fromJS(action.data))
+      })
+    }
+
+    default: {
+      return state;
+    }
+  }
 }

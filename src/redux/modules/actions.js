@@ -1,5 +1,8 @@
 import { AUTH_SUCCESS, AUTH_ERROR, SELECT_PLAYLIST_ITEM, SELECT_WINDOW,
-  OPEN_WINDOW, CLOSE_WINDOW, MOVE_WINDOW } from './constants';
+  OPEN_WINDOW, CLOSE_WINDOW, MOVE_WINDOW, LOAD_BOOKS } from './constants';
+import ApiClient from 'helpers/ApiClient';
+
+const client = new ApiClient();
 
 export function selectPlaylistItem(data) {
   return {
@@ -22,11 +25,23 @@ export function selectWindow(data) {
   };
 }
 
-export function openWindow(data) {
+function _openWindow(data) {
   return {
     type: OPEN_WINDOW,
     data,
-  };
+  }
+}
+
+export function openWindow(data) {
+  return function (dispatch) {
+    dispatch(_openWindow(data))
+
+    if (data === 'Bookshelf') {
+      return client.get('/books').then(
+        data => dispatch(loadBooks(data))
+      )
+    }
+  }
 }
 
 export function closeWindow(data) {
@@ -34,6 +49,13 @@ export function closeWindow(data) {
     type: CLOSE_WINDOW,
     data,
   };
+}
+
+export function loadBooks(books) {
+  return {
+    type: LOAD_BOOKS,
+    data: books
+  }
 }
 
 export function authenticationSuccessful(data) {

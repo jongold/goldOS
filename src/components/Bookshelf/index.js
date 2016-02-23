@@ -9,10 +9,17 @@ import { immutableRenderDecorator } from 'react-immutable-render-mixin';
 class Bookshelf extends Component {
   render() {
     console.log('render bookshelf');
+    let content;
+    if (this.props.books.get('loaded') === true) {
+      content = this.props.books.get('books').map((book, i) => <Book item={book} key={i} />)
+    } else {
+      content = 'Loading…';
+    }
+
     return (
       <Window {...this.props}>
         <div className="flex flex-wrap p2">
-          {this.props.books.map((book, i) => <Book item={book} key={i} />)}
+          { content }
         </div>
       </Window>
     );
