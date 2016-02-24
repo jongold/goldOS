@@ -4,6 +4,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import IPropTypes from 'react-immutable-proptypes';
 import { DragDropContext, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -182,7 +183,7 @@ class Desktop extends Component {
 
   render() {
     const { windows, connectDropTarget } = this.props;
-    const title = windows.last() ? windows.last().get('title') : 'goldOS';
+    const title = windows.last() && windows.last().get('title');
 
     return connectDropTarget(
       <div
@@ -191,9 +192,10 @@ class Desktop extends Component {
           justifyContent: 'flex-end' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"
       >
+        <Helmet title={ title || 'Desktop' } />
         <div className="bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex">
           <div className="bold px2">λ</div>
-          <div className="bold px2">{ title }</div>
+          <div className="bold px2">{ title || 'goldOS' }</div>
           <div className="px2">File</div>
           <div className="px2">Edit</div>
           <div className="px2">View</div>

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import Typist from 'react-typist';
 import { name, version } from '../../../package.json';
 import { connect } from 'react-redux';
@@ -55,6 +56,7 @@ class BootSequence extends Component {
 
     return (
       <div className={cx}>
+        <Helmet title='Loading…' />
         <div className="console-text h6 pre mb4">
           { logo }
           <br />

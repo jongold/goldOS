@@ -7,12 +7,15 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import config from '../../config';
 import styles from './styles.css';
+import Helmet from 'react-helmet';
 
 class App extends Component {
   render() {
     return (
       <div>
+        <Helmet {...config.app.head} />
         { this.props.children }
       </div>
     );
