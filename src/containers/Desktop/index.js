@@ -15,7 +15,6 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import { selectPlaylistItem, selectWindow, openWindow, closeWindow, moveWindow,
 } from 'redux/modules/actions';
 import { startBiosAnimation, renderBiosLoading, finishBiosLoading } from 'redux/modules/biosReducer';
-import { isNil, prop } from 'ramda';
 import config from '../../config';
 import selector from './selector';
 import styles from './styles.css';
@@ -201,8 +200,8 @@ class Desktop extends Component {
   }
 
   render() {
-    const { bios, params } = this.props;
-    const content = ( isNil(prop('windowTitle', params)) && !bios.get('finishedLoading') ) ? this.renderBios() : this.renderDesktop() ;
+    const { bios, params, renderDesktop } = this.props;
+    const content = renderDesktop ? this.renderBios() : this.renderDesktop();
 
     return (
       <div>

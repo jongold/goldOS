@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { evolve, map } from 'ramda';
+import { evolve, isNil, map, prop } from 'ramda';
 import moment from 'moment';
 
 const momentify = evolve({
@@ -11,6 +11,7 @@ const bookSelector = (state) => state.get('books');
 const podcastSelector = (state) => state.get('podcasts');
 const windowsSelector = (state) => state.get('windows');
 const travelSelector = (state) => state.get('travel');
+const paramsSelector = (_, props) => props.params;
 
 const habitsSelector = createSelector(
   (state) => state.getIn(['habits']),
@@ -26,7 +27,9 @@ export default createSelector(
   windowsSelector,
   habitsSelector,
   travelSelector,
-  (bios, books, podcasts, windows, habits, travel) => {
-    return ({ bios, books, podcasts, windows, habits, travel });
+  paramsSelector,
+  (bios, books, podcasts, windows, habits, travel, params) => {
+    const renderDesktop = isNil(prop('windowTitle', params)) && !bios.get('finishedLoading');
+    return ({ bios, books, podcasts, windows, habits, travel, renderDesktop });
   }
 );
