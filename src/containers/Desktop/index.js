@@ -16,6 +16,7 @@ import './styles.css';
 
 import BootSequence from 'components/BootSequence';
 import Bookshelf from 'components/Bookshelf';
+import Contact from 'components/Contact';
 import DesktopIcon from 'components/DesktopIcon';
 import Habits from 'components/Habits';
 import Map from 'components/Map';
@@ -135,6 +136,18 @@ class Desktop extends Component {
               clickPlaylistItem={this.onClickPlaylistItem}
               current={this.props.podcasts.get('current')}
               items={this.props.podcasts.get('library')}
+            />
+          );
+
+        case 'Contact':
+          return (
+            <Contact
+              key={key}
+              id={key}
+              title={win.get('title')}
+              x={win.get('x')} y={win.get('y')} z={zIndex++}
+              onClickLink={this.onChangeRoute}
+              onClickClose={this.onCloseWindow}
             />
           );
 
