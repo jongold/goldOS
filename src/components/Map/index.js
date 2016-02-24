@@ -28,7 +28,7 @@ class Map extends Component {
 
     const statesVisitedNames = pluck('name', statesVisited);
 
-    const { height, width, title } = this.props;
+    const { height, width } = this.props;
 
     const node = createElement('svg');
 

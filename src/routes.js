@@ -1,14 +1,12 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
-import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-
+import { Route } from 'react-router';
 import Desktop from 'containers/Desktop';
 
 import { openWindow } from 'redux/modules/actions';
 
 
 export default (store) => {
-  function onEnterDesktop(nextState, replace) {
+  function onEnterDesktop(nextState) {
     const title = nextState.params.windowTitle || 'Welcome';
     return store.dispatch(openWindow(title));
   }

@@ -7,9 +7,8 @@ import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import io from 'socket.io-client';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 
 import getRoutes from './routes';
@@ -20,7 +19,7 @@ const dest = document.getElementById('content');
 const store = createStore(history, client, window.__data);
 
 function initSocket() {
-  const socket = io('', {path: '/ws'});
+  const socket = io('', { path: '/ws' });
   socket.on('news', (data) => {
     console.log(data);
     socket.emit('my other event', { my: 'data from client' });

@@ -7,26 +7,26 @@ const FINISH_BIOS_LOADING = 'FINISH_BIOS_LOADING';
 export function startBiosAnimation() {
   return {
     type: START_BIOS_ANIMATION,
-  }
+  };
 }
 
 export function renderBiosLoading() {
   return {
     type: RENDER_BIOS_LOADING,
-  }
+  };
 }
 
 export function finishBiosLoading() {
   return {
     type: FINISH_BIOS_LOADING,
-  }
+  };
 }
 
 const initialState = Map({
   startBiosAnimation: false,
   renderLoading: false,
   finishedLoading: false,
-})
+});
 
 function biosReducer(state = initialState, action) {
   switch (action.type) {
@@ -43,7 +43,7 @@ function biosReducer(state = initialState, action) {
     }
 
     default: {
-      return state
+      return state;
     }
   }
 }

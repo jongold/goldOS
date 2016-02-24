@@ -23,7 +23,6 @@ export default function createStore(history, client, data) {
   }
 
   const reducer = require('./modules/reducer');
-  // console.log(reducer)
   data = fromJS({});
   const store = finalCreateStore(reducer, data);
 

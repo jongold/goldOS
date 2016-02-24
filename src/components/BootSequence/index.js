@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import IPropTypes from 'react-immutable-proptypes'
+import IPropTypes from 'react-immutable-proptypes';
 import Helmet from 'react-helmet';
 import Typist from 'react-typist';
 import { name, version } from '../../../package.json';
-import { connect } from 'react-redux';
-import { routeActions } from 'react-router-redux';
 import classNames from 'classnames';
 
 const logo = `
@@ -59,7 +57,7 @@ class BootSequence extends Component {
 
     return (
       <div className={cx}>
-        <Helmet title='Loading…' />
+        <Helmet title="Loading…" />
         <div className="console-text h6 pre mb4">
           { logo }
           <br />
@@ -119,7 +117,7 @@ class BootSequence extends Component {
 }
 
 BootSequence.propTypes = {
-  bios: IPropTypes.mapOf({
+  bios: IPropTypes.contains({
     startBiosAnimation: PropTypes.bool,
     renderLoading: PropTypes.bool,
     finishedLoading: PropTypes.bool,
