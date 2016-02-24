@@ -15,21 +15,21 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'React Redux Example',
-    description: 'All the modern best practices in one example.',
+    title: 'Jon Gold',
+    description: 'Designer & Engineer',
     head: {
-      titleTemplate: 'React Redux Example: %s',
+      titleTemplate: 'Jon Gold: %s',
       meta: [
-        {name: 'description', content: 'All the modern best practices in one example.'},
+        {name: 'description', content: 'Designer & Engineer'},
         {charset: 'utf-8'},
-        {property: 'og:site_name', content: 'React Redux Example'},
-        {property: 'og:image', content: 'https://react-redux.herokuapp.com/logo.jpg'},
-        {property: 'og:locale', content: 'en_US'},
-        {property: 'og:title', content: 'React Redux Example'},
-        {property: 'og:description', content: 'All the modern best practices in one example.'},
+        {property: 'og:site_name', content: 'Jon Gold'},
+        {property: 'og:image', content: 'http://alpha.jon.gold/avatar.jpg'},
+        {property: 'og:locale', content: 'en_GB'},
+        {property: 'og:title', content: 'goldOS'},
+        {property: 'og:description', content: 'Jon Gold is an inter-disciplinary designer & engineer. This is his weird website.' },
         {property: 'og:card', content: 'summary'},
-        {property: 'og:site', content: '@erikras'},
-        {property: 'og:creator', content: '@erikras'},
+        {property: 'og:site', content: '@jongold'},
+        {property: 'og:creator', content: '@jongold'},
         {property: 'og:image:width', content: '200'},
         {property: 'og:image:height', content: '200'}
       ]
