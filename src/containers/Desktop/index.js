@@ -28,7 +28,7 @@ import MediaPlayer from 'components/MediaPlayer';
 import Post from 'components/Post';
 import img from './avatar.png';
 
-import welcomePost from '../../posts/welcome.md';
+import welcomePost from '../../posts/welcome';
 
 const windowTarget = {
   drop(props, monitor, component) {
@@ -151,6 +151,7 @@ class Desktop extends Component {
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
               content={welcomePost}
+              onClickLink={this.onChangeRoute}
               onClickClose={this.onCloseWindow}
             />
           );

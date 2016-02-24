@@ -6,12 +6,12 @@ import { immutableRenderDecorator } from 'react-immutable-render-mixin';
 class Post extends Component {
   render() {
     console.log('render post');
+    const Content = this.props.content;
     return (
       <Window {...this.props}>
-        <div
-          className="h6 p2"
-          dangerouslySetInnerHTML={{ __html: this.props.content }}
-        />
+        <div className="p2">
+          <Content onClickLink={this.props.onClickLink} />
+        </div>
       </Window>
     );
   }
@@ -19,6 +19,7 @@ class Post extends Component {
 
 Post.propTypes = {
   content: PropTypes.string,
+  onClickLink: PropTypes.func,
 };
 
 export default Post;
