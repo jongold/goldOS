@@ -6,6 +6,7 @@ const momentify = evolve({
   date: moment,
 });
 
+const biosSelector = (state) => state.get('bios');
 const bookSelector = (state) => state.get('books');
 const podcastSelector = (state) => state.get('podcasts');
 const windowsSelector = (state) => state.get('windows');
@@ -19,12 +20,13 @@ const habitsSelector = createSelector(
 );
 
 export default createSelector(
+  biosSelector,
   bookSelector,
   podcastSelector,
   windowsSelector,
   habitsSelector,
   travelSelector,
-  (books, podcasts, windows, habits, travel) => {
-    return ({ books, podcasts, windows, habits, travel });
+  (bios, books, podcasts, windows, habits, travel) => {
+    return ({ bios, books, podcasts, windows, habits, travel });
   }
 );

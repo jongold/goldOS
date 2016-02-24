@@ -14,9 +14,13 @@ import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { selectPlaylistItem, selectWindow, openWindow, closeWindow, moveWindow,
 } from 'redux/modules/actions';
+import { startBiosAnimation, renderBiosLoading, finishBiosLoading } from 'redux/modules/biosReducer';
+import { isNil, prop } from 'ramda';
 import config from '../../config';
 import selector from './selector';
+import styles from './styles.css';
 
+import BootSequence from 'components/BootSequence';
 import Bookshelf from 'components/Bookshelf';
 import DesktopIcon from 'components/DesktopIcon';
 import Habits from 'components/Habits';
@@ -26,7 +30,6 @@ import Post from 'components/Post';
 import img from './avatar.png';
 
 import welcomePost from '../../posts/welcome.md';
-
 
 const windowTarget = {
   drop(props, monitor, component) {
@@ -52,6 +55,9 @@ class Desktop extends Component {
     this.onSelectWindow = this.onSelectWindow.bind(this);
     this.onCloseWindow = this.onCloseWindow.bind(this);
     this.onClickDesktopIcon = this.onClickDesktopIcon.bind(this);
+    this.onStartBiosAnimation = this.onStartBiosAnimation.bind(this);
+    this.onRenderBiosLoading = this.onRenderBiosLoading.bind(this);
+    this.onFinishBiosLoading = this.onFinishBiosLoading.bind(this);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
@@ -78,6 +84,18 @@ class Desktop extends Component {
 
   moveWindow(item) {
     this.props.dispatch(moveWindow(item));
+  }
+
+  onStartBiosAnimation() {
+    this.props.dispatch(startBiosAnimation());
+  }
+
+  onRenderBiosLoading() {
+    this.props.dispatch(renderBiosLoading());
+  }
+
+  onFinishBiosLoading() {
+    this.props.dispatch(finishBiosLoading());
   }
 
   renderWindows() {
@@ -183,7 +201,30 @@ class Desktop extends Component {
   }
 
   render() {
-    const { windows, connectDropTarget } = this.props;
+    const { bios, params } = this.props;
+    const content = ( isNil(prop('windowTitle', params)) && !bios.get('finishedLoading') ) ? this.renderBios() : this.renderDesktop() ;
+
+    return (
+      <div>
+        <Helmet { ...config.app.head } />
+        { content }
+      </div>
+    );
+  }
+
+  renderBios() {
+    return (
+      <BootSequence
+        bios={this.props.bios}
+        start={this.onStartBiosAnimation}
+        renderLoading={this.onRenderBiosLoading}
+        finish={this.onFinishBiosLoading}
+      />
+    )
+  }
+
+  renderDesktop() {
+    const { connectDropTarget, windows } = this.props;
     const title = windows.last() && windows.last().get('title');
 
     return connectDropTarget(
@@ -193,7 +234,7 @@ class Desktop extends Component {
           justifyContent: 'flex-end' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"
       >
-        <Helmet { ...config.app.head } title={ title || 'Desktop' } />
+        <Helmet title={ title || 'Desktop' } />
         <div className="bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex">
           <div className="bold px2">λ</div>
           <div className="bold px2">{ title || 'goldOS' }</div>

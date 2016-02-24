@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import IPropTypes from 'react-immutable-proptypes'
 import Helmet from 'react-helmet';
 import Typist from 'react-typist';
 import { name, version } from '../../../package.json';
@@ -27,20 +28,22 @@ class BootSequence extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ show: true }), 300);
+    setTimeout(() => this.props.start(), 300);
   }
 
   onCommandsTyped = () => {
-    this.setState({ renderLoading: true });
+    this.props.renderLoading();
   };
 
   onFinishLoading = () => {
-    this.props.dispatch(routeActions.push('/desktop'));
+    this.props.finish();
   };
 
   render() {
+    const { bios } = this.props;
+
     const cx = classNames('vw100', 'vh100', 'p2', 'bootscreen', {
-      'bootscreen--show': this.state.show,
+      'bootscreen--show': bios.get('startBiosAnimation'),
     });
 
     const typist = {
@@ -66,7 +69,7 @@ class BootSequence extends Component {
             — Alan J. Perlis</p>
         </div>
           <div className="console-text h6">
-            { this.state.show ? (
+            { bios.get('startBiosAnimation') ? (
               <Typist {...typist} onTypingDone={this.onCommandsTyped}>
                 <strong>λ</strong> system --version
                 <br />
@@ -78,7 +81,7 @@ class BootSequence extends Component {
                 <br />
               </Typist>
             ) : null }
-            { this.state.renderLoading ? (
+            { bios.get('renderLoading') ? (
               <Typist cursor={{ show: false }}
                 avgTypingDelay={0}
                 onTypingDone={this.onFinishLoading}
@@ -116,7 +119,14 @@ class BootSequence extends Component {
 }
 
 BootSequence.propTypes = {
-  dispatch: PropTypes.func,
+  bios: IPropTypes.mapOf({
+    startBiosAnimation: PropTypes.bool,
+    renderLoading: PropTypes.bool,
+    finishedLoading: PropTypes.bool,
+  }),
+  start: PropTypes.func,
+  renderLoading: PropTypes.func,
+  finish: PropTypes.func,
 };
 
-export default connect()(BootSequence);
+export default BootSequence;

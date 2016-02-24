@@ -9,6 +9,7 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 // import info from './info';
 // import widgets from './widgets';
 
+import biosReducer from './biosReducer';
 import globalReducer from './windowsReducer';
 import booksReducer from './booksReducer';
 import habitsReducer from './habitsReducer';
@@ -16,14 +17,12 @@ import podcastsReducer from './podcastsReducer';
 import travelReducer from './travelReducer';
 import { fromJS } from 'immutable';
 
-import {
-      UPDATE_LOCATION
-} from 'react-router-redux';
+import { UPDATE_LOCATION } from 'react-router-redux';
 
 let initialState;
 
 initialState = fromJS({
-    location: undefined
+  location: undefined
 });
 
 function routeReducer (state = initialState, action) {
@@ -40,6 +39,7 @@ export default combineReducers({
   route: routeReducer,
   reduxAsyncConnect,
   windows: globalReducer,
+  bios: biosReducer,
   books: booksReducer,
   habits: habitsReducer,
   podcasts: podcastsReducer,

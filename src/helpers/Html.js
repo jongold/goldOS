@@ -48,7 +48,7 @@ export default class Html extends Component {
           )}
 
           {/* resolves the initial style flash (flicker) on page load in development mode */}
-          { emptyKeys(assets.styles) ? <style dangerouslySetInnerHTML={{__html: require('containers/App/styles.css')}}/> : null }
+          { emptyKeys(assets.styles) ? <style dangerouslySetInnerHTML={{__html: require('containers/Desktop/styles.css')}}/> : null }
         </head>
         <body className="overflow-hidden">
           <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
