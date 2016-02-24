@@ -15,18 +15,11 @@ export default (store) => {
     return store.dispatch(openWindow(title));
   }
 
-  /**
-   * Please keep routes in alphabetical order
-   */
   return (
-    <Route path='/' component={App}>
-      <IndexRoute component={BootSequence} />
-
-      <Route
-        path="/desktop(/:windowTitle)"
-        component={Desktop}
-        onEnter={onEnterDesktop}
-      />
-    </Route>
+    <Route
+      path="/(:windowTitle)"
+      component={Desktop}
+      onEnter={onEnterDesktop}
+    />
   );
 };

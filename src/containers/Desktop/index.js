@@ -14,6 +14,7 @@ import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { selectPlaylistItem, selectWindow, openWindow, closeWindow, moveWindow,
 } from 'redux/modules/actions';
+import config from '../../config';
 import selector from './selector';
 
 import Bookshelf from 'components/Bookshelf';
@@ -68,7 +69,7 @@ class Desktop extends Component {
   }
 
   onClickDesktopIcon(title) {
-    this.props.dispatch(routeActions.push(`/desktop/${title}`));
+    this.props.dispatch(routeActions.push(`/${title}`));
   }
 
   onClickPlaylistItem(item) {
@@ -192,7 +193,7 @@ class Desktop extends Component {
           justifyContent: 'flex-end' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"
       >
-        <Helmet title={ title || 'Desktop' } />
+        <Helmet { ...config.app.head } title={ title || 'Desktop' } />
         <div className="bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex">
           <div className="bold px2">λ</div>
           <div className="bold px2">{ title || 'goldOS' }</div>

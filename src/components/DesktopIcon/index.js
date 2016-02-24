@@ -19,7 +19,7 @@ export default function DesktopIcon({ title, onClick }) {
   return (
     <div className="px1 mb2 ml2 flex flex-column flex-center"
     >
-      <a href={`/desktop/${title}`} onClick={fn}>
+      <a href={`/${title}`} onClick={fn}>
         <div
           className="flex-justify"
           style={{ height: size, width: size }}
