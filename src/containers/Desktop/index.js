@@ -1,8 +1,3 @@
-/*
- * Desktop
- * This is the first thing users see of our App
- */
-
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import IPropTypes from 'react-immutable-proptypes';
@@ -12,12 +7,12 @@ import { ItemTypes } from 'redux/modules/constants';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { selectPlaylistItem, selectWindow, openWindow, closeWindow, moveWindow,
+import { selectPlaylistItem, selectWindow, closeWindow, moveWindow,
 } from 'redux/modules/actions';
 import { startBiosAnimation, renderBiosLoading, finishBiosLoading } from 'redux/modules/biosReducer';
 import config from '../../config';
 import selector from './selector';
-import styles from './styles.css';
+import './styles.css';
 
 import BootSequence from 'components/BootSequence';
 import Bookshelf from 'components/Bookshelf';
@@ -37,7 +32,7 @@ const windowTarget = {
     const x = Math.round(item.x + delta.x);
     const y = Math.round(item.y + delta.y);
 
-    component.moveWindow({ id: item.id, x, y });
+    component.onMoveWindow({ id: item.id, x, y });
   },
 };
 
@@ -81,7 +76,7 @@ class Desktop extends Component {
     this.props.dispatch(selectPlaylistItem(item));
   }
 
-  moveWindow(item) {
+  onMoveWindow(item) {
     this.props.dispatch(moveWindow(item));
   }
 
@@ -200,18 +195,6 @@ class Desktop extends Component {
     );
   }
 
-  render() {
-    const { bios, params, renderDesktop } = this.props;
-    const content = renderDesktop ? this.renderBios() : this.renderDesktop();
-
-    return (
-      <div>
-        <Helmet { ...config.app.head } />
-        { content }
-      </div>
-    );
-  }
-
   renderBios() {
     return (
       <BootSequence
@@ -220,7 +203,7 @@ class Desktop extends Component {
         renderLoading={this.onRenderBiosLoading}
         finish={this.onFinishBiosLoading}
       />
-    )
+    );
   }
 
   renderDesktop() {
@@ -229,8 +212,8 @@ class Desktop extends Component {
 
     return connectDropTarget(
       <div
-        style={{ background: `no-repeat center center url(${img})`,
-          backgroundSize: `50% auto`, backgroundColor: '#DFBA69',
+        style={{ background: `no-repeat center center 50%/auto url(${img}), url(/bg.png)`,
+          backgroundColor: '#DFBA69',
           justifyContent: 'flex-end' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"
       >
@@ -266,16 +249,29 @@ class Desktop extends Component {
       </div>
     );
   }
+
+  render() {
+    const content = this.props.renderDesktop ? this.renderBios() : this.renderDesktop();
+
+    return (
+      <div>
+        <Helmet { ...config.app.head } />
+        { content }
+      </div>
+    );
+  }
 }
 
 Desktop.propTypes = {
   dispatch: PropTypes.func,
-  windows: IPropTypes.list,
+  windows: IPropTypes.orderedSet,
   habits: PropTypes.array,
   books: IPropTypes.list,
   podcasts: IPropTypes.map,
   travel: IPropTypes.list,
   connectDropTarget: PropTypes.func,
+  bios: IPropTypes.map,
+  renderDesktop: PropTypes.func,
 };
 
 export default Desktop;
