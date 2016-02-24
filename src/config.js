@@ -23,7 +23,7 @@ module.exports = Object.assign({
         {name: 'description', content: 'Designer & Engineer'},
         {charset: 'utf-8'},
         {property: 'og:site_name', content: 'Jon Gold'},
-        {property: 'og:image', content: 'http://alpha.jon.gold/avatar.jpg'},
+        {property: 'og:image', content: 'http://alpha.jon.gold/avatar_og.jpg'},
         {property: 'og:locale', content: 'en_GB'},
         {property: 'og:title', content: 'goldOS'},
         {property: 'og:description', content: 'Jon Gold is an inter-disciplinary designer & engineer. This is his weird website.' },
