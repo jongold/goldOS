@@ -212,7 +212,7 @@ class Desktop extends Component {
 
     return connectDropTarget(
       <div
-        style={{ background: `no-repeat center center 50%/auto url(${img}), url(/bg.png)`,
+        style={{ background: `no-repeat center center 50%/auto url(${img})`,
           backgroundColor: '#DFBA69',
           justifyContent: 'flex-end' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"

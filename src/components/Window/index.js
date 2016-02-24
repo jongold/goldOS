@@ -7,7 +7,7 @@ import TrafficLights from 'components/Window/TrafficLights';
 
 const windowSource = {
   beginDrag({ id, x, y }) {
-    console.log(id, x, y);
+    // console.log(id, x, y);
     return { id, x, y };
   },
 };

@@ -217,7 +217,7 @@ body::before{
   --button-padding-y: .5rem;
   --button-padding-x: 1rem;
   --container-width: 64em;
-  --black:  #111;
+  --black:  #333;
   --gray:   #aaa;
   --silver: #ddd;
   --white:  #fff;
@@ -243,7 +243,7 @@ body::before{
   --border-radius: 3px;
   --border-color: var(--darken-2);
   --hover-background-color: var(--darken-1);
-  --link-color: var(--gold);
+  --link-color: var(--gray);
   --button-background-color: var(--blue);
   --pre-background-color: var(--white);
 }

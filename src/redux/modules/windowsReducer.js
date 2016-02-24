@@ -31,7 +31,7 @@ function windowsReducer(state = initialState, action) {
       const lastItem = state.last();
       const item = new Map({
         x: lastItem ? lastItem.get('x') + 38 : 40,
-        y: lastItem ? lastItem.get('y') + 38 : 40,
+        y: lastItem ? lastItem.get('y') + 38 : 80,
         title: action.data,
       });
 

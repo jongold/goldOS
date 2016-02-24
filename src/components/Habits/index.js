@@ -56,7 +56,7 @@ export default class Habits extends Component {
       });
 
     return (
-      <div className="mr3">
+      <div className="flex-grow center">
         <p className="center h6 bold">
           {prop}
         </p>
@@ -68,6 +68,10 @@ export default class Habits extends Component {
   render() {
     return (
       <Window {...this.props}>
+        <div className="p2 h6">
+          <p>I’ve meditated sporadically for years, but I’m finding it fascinating to see how my mind is changing since quitting alcohol (for one, it makes meditating more frequently easier).</p>
+          <p>I’m logging my habits with a custom tool I made (just because) that I plan to open source soon.</p>
+        </div>
         <div className="p2 flex">
           {this.renderHabit('meditate')}
           {this.renderHabit('no alcohol')}

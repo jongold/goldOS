@@ -9,7 +9,7 @@ class Post extends Component {
     const Content = this.props.content;
     return (
       <Window {...this.props}>
-        <div className="p2">
+        <div className="p2 h5">
           <Content onClickLink={this.props.onClickLink} />
         </div>
       </Window>

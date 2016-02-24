@@ -105,8 +105,8 @@ class Map extends Component {
 
     return (
       <Window height={240} width={260} {...this.props}>
-        <div className="p1">
-          {node.toReact()}
+        <div>
+          { node.toReact() }
         </div>
       </Window>
     );
