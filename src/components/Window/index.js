@@ -63,7 +63,7 @@ class Window extends Component {
           onClickClose={this.props.onClickClose}
           onSelect={this.props.onSelect}
         />
-        <div style={contentStyle}>
+        <div className="flex flex-column" style={contentStyle}>
           { this.props.children }
         </div>
       </div>
