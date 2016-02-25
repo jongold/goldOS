@@ -83,7 +83,7 @@ class Contact extends Component {
               );
             })}
           </ul>
-          <div className="flex flex-column flex-grow overflow-scroll relative" style={{ maxHeight: 640 }}>
+          <div className="flex flex-column flex-grow overflow-scroll relative" style={{ maxHeight: 480 }}>
             <ul className="p2 h5 flex flex-grow list-reset flex flex-column m0">
               {threads.find((t) => t.get('title') === activeThread).get('messages').map((c, i) => {
                 const primary = c.get('me');
