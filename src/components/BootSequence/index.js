@@ -34,7 +34,7 @@ class BootSequence extends Component {
   };
 
   onFinishLoading = () => {
-    this.props.finish();
+    setTimeout(() => this.props.finish(), 1000);
   };
 
   render() {
@@ -107,6 +107,8 @@ class BootSequence extends Component {
                 beep boop beep boop
                 <br />
                 loading........................
+                <br />
+                9 8 7 6 5 4 3 2 1 0
                 <br />
               </Typist>
             ) : null }
