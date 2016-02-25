@@ -205,7 +205,7 @@ class Desktop extends Component {
     ];
 
     return (
-      <ul className="flex flex-column px2 py2 mt3"
+      <ul className="flex-column px2 py2 mt3"
         style={{ flexWrap: 'wrap-reverse', justifyContent: 'flex-start',
           alignItems: 'center', alignContent: 'center' }}
       >
