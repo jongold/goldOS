@@ -24,6 +24,10 @@ body {
   background: black;
 }
 
+.cu-custom {
+  cursor: url('/cursor.png') 10 10, default;
+}
+
 .blink {
   animation: 1s ease-in-out blink infinite;
 }

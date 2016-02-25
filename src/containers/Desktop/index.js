@@ -238,7 +238,7 @@ class Desktop extends Component {
       <div
         style={{ background: `no-repeat center url(${img}), 20px 20px url(/bgpattern.png), #DFBA69`,
           justifyContent: 'flex-end' }}
-        className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"
+        className="bg-gold vh100 vw100 overflow-hidden cu-custom flex flex-start"
       >
         <Helmet title={ title || 'Desktop' } />
         <div className="bg-gold-dark white h6 absolute top-0 left-0 right-0 py1 flex">
