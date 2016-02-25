@@ -23,7 +23,7 @@ import Habits from 'components/Habits';
 import Map from 'components/Map';
 import MediaPlayer from 'components/MediaPlayer';
 import Post from 'components/Post';
-import img from './avatar.png';
+import img from './desktopbg.jpg';
 
 import welcomePost from '../../posts/welcome';
 
@@ -233,13 +233,12 @@ class Desktop extends Component {
 
     return connectDropTarget(
       <div
-        style={{ background: `no-repeat center center 50%/auto url(${img})`,
-          backgroundColor: '#DFBA69',
+        style={{ background: `no-repeat center url(${img}), 20px 20px url(/bgpattern.png), #DFBA69`,
           justifyContent: 'flex-end' }}
         className="bg-gold vh100 vw100 overflow-hidden cu-default flex flex-start"
       >
         <Helmet title={ title || 'Desktop' } />
-        <div className="bg-darken-2 white h6 absolute top-0 left-0 right-0 py1 flex">
+        <div className="bg-gold-dark white h6 absolute top-0 left-0 right-0 py1 flex">
           <div className="bold px2">λ</div>
           <div className="bold px2">{ title || 'goldOS' }</div>
           <div className="px2">File</div>

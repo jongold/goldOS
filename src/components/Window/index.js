@@ -56,7 +56,7 @@ class Window extends Component {
     return connectDragSource(
       <div
         style={wrapperStyle}
-        className="bg-white absolute rounded-2 border border-gold gold"
+        className="bg-white absolute rounded-2 border border-gold-dark gold"
       >
         <WindowTitle
           {...this.props}

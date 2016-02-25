@@ -42,21 +42,6 @@ body {
   }
 }
 
-/* @media (max-width: 400px) { */
-/*   /* body::after { */ */
-  /*   content: 'Hello mobile friend. This site is definitely a desktop thing. I do love you, I promise. —@jongold'; */
-  /*   position: absolute; */
-  /*   top: 0; */
-  /*   right: 0; */
-  /*   bottom: 0; */
-  /*   left: 0; */
-  /*   z-index: 1000; */
-  /*   padding: var(--space-2); */
-  /*   background: var(--gold); */
-  /*   color: var(--white); */
-  /* } */
-/* } */
-
 body::before{
   content:" ";
   display:block;
@@ -184,6 +169,18 @@ body::before{
   border-color: var(--gold);
 }
 
+.gold-dark {
+  color: var(--gold-dark);
+}
+
+.bg-gold-dark {
+  background-color: var(--gold-dark);
+}
+
+.border-gold-dark {
+  border-color: var(--gold-dark);
+}
+
 .stroke-white {
   stroke: var(--white);
 }
@@ -255,6 +252,7 @@ body::before{
   --silver: #ddd;
   --white:  #fff;
   --gold:   #DFBA69;
+  --gold-dark: #B49656;
   --aqua:   #7fdbff;
   --blue:   #0074d9;
   --navy:   #001f3f;
@@ -276,7 +274,7 @@ body::before{
   --border-radius: 3px;
   --border-color: var(--darken-2);
   --hover-background-color: var(--darken-1);
-  --link-color: var(--gray);
+  --link-color: var(--gold-dark);
   --button-background-color: var(--blue);
   --pre-background-color: var(--white);
 }
