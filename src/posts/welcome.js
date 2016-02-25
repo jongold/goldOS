@@ -12,7 +12,7 @@ export default function Welcome({ onClickLink }) {
 
       <p>I’m in love with the convergence of design, technology, AI &amp; good vibes, and <span className="blink">I’m looking for work</span> in London or San Francisco working on algorithmic design systems, prototyping &amp;&amp; / ||  design tooling.</p>
 
-      <p>Most recently I worked on an intelligent typography brain at <a href='http://thegrid.io'>The Grid</a>; before that I made a lot of internet at <a href='http://makeshift.io'>Makeshift</a> (where I started <a href='http://hiremyfriend.io'>Hire My Friend</a>), Sidekick Studios, Evently &amp; Prismatic.</p>
+      <p>Most recently I worked on an intelligent typography brain at <a href="http://thegrid.io">The Grid</a>; before that I made a lot of internet at <a href="http://makeshift.io">Makeshift</a> (where I started <a href="http://hiremyfriend.io">Hire My Friend</a>), Sidekick Studios, Evently &amp; Prismatic.</p>
 
       <p><Link href={"/Contact"} handleClick={onClickLink}>Hire me</Link>, or engage with my personal brand on <a href="http://twitter.com/jongold">Twitter</a>.</p>
 
