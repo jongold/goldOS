@@ -24,20 +24,38 @@ body {
   background: black;
 }
 
-@media (max-width: 400px) {
-  body::after {
-    content: 'Hello mobile friend. This site looks bad on mobile. I do love you, I promise. —@jongold';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    padding: var(--space-2);
-    background: var(--gold);
-    color: var(--white);
+.blink {
+  animation: 1s ease-in-out blink infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
+
+/* @media (max-width: 400px) { */
+/*   /* body::after { */ */
+  /*   content: 'Hello mobile friend. This site is definitely a desktop thing. I do love you, I promise. —@jongold'; */
+  /*   position: absolute; */
+  /*   top: 0; */
+  /*   right: 0; */
+  /*   bottom: 0; */
+  /*   left: 0; */
+  /*   z-index: 1000; */
+  /*   padding: var(--space-2); */
+  /*   background: var(--gold); */
+  /*   color: var(--white); */
+  /* } */
+/* } */
 
 body::before{
   content:" ";
