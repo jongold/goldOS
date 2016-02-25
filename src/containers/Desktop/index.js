@@ -153,6 +153,7 @@ class Desktop extends Component {
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
               data={this.props.contact}
+              onSelect={this.onSelectWindow}
               onClickThread={this.onClickThread}
               onClickLink={this.onChangeRoute}
               onClickClose={this.onCloseWindow}
@@ -167,6 +168,7 @@ class Desktop extends Component {
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
               content={welcomePost}
+              onSelect={this.onSelectWindow}
               onClickLink={this.onChangeRoute}
               onClickClose={this.onCloseWindow}
             />
@@ -181,6 +183,7 @@ class Desktop extends Component {
               x={win.get('x')} y={win.get('y')} z={zIndex++}
               places={this.props.travel}
               height={480} width={640}
+              onSelect={this.onSelectWindow}
               onClickClose={this.onCloseWindow}
             />
           );

@@ -53,10 +53,15 @@ class Window extends Component {
       zIndex: this.props.z * 100,
     };
 
+    const onSelect = (e) => {
+      this.props.onSelect(this.props.id);
+    };
+
     return connectDragSource(
       <div
         style={wrapperStyle}
         className="bg-white absolute rounded-2 border border-gold-dark gold"
+        onClick={onSelect}
       >
         <WindowTitle
           {...this.props}
@@ -76,7 +81,10 @@ export default Window;
 function WindowTitle({ title, onClickClose, id }) {
   const cx = 'flex flex-center border-bottom border-gold px1 py1 js-handle';
 
-  const fn = onClickClose.bind(this, id);
+  const fn = (e) => {
+    e.stopPropagation();
+    onClickClose(id);
+  };
 
   return (
     <div
