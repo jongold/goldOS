@@ -4,6 +4,7 @@ export default function Link(props) {
   const { handleClick, href } = props;
   const fn = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     handleClick(href);
   };
 
