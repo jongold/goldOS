@@ -63,8 +63,8 @@ class Desktop extends Component {
     this.props.dispatch(routeActions.push(url));
   }
 
-  onSelectWindow(id) {
-    this.props.dispatch(selectWindow(id));
+  onSelectWindow(title) {
+    this.props.dispatch(routeActions.push(`/${title}`));
   }
 
   onCloseWindow(id) {

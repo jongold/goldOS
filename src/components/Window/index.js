@@ -54,7 +54,7 @@ class Window extends Component {
     };
 
     const onSelect = (e) => {
-      this.props.onSelect(this.props.id);
+      this.props.onSelect(this.props.title);
     };
 
     return connectDragSource(
