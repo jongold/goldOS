@@ -7,7 +7,7 @@ export default function Welcome({ onClickLink }) {
       <p className="bold">Beep boop, welcome to my corner of the information superhighway.</p>
 
       <p>I’m Jon Gold, an inter-disciplinary designer, engineer and adventurer from
-        London but <Link handleClick={onClickLink} href="/Hello World">usually travelling</Link>. My favourite emojis are 🙏, 🤖 and 👽.
+        London but <Link handleClick={onClickLink} href="/Hello World">usually travelling</Link>. My favourite emojis are 🙏, 💞 and 👽.
       </p>
 
       <p>I’m in love with the convergence of design, technology, AI &amp; good vibes, and <span className="blink">I’m looking for work</span> in London or San Francisco working on algorithmic design systems, prototyping &amp;&amp; / ||  design tooling.</p>
