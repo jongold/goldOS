@@ -10,6 +10,7 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import { selectPlaylistItem, selectWindow, closeWindow, moveWindow,
 } from 'redux/modules/actions';
 import { startBiosAnimation, renderBiosLoading, finishBiosLoading } from 'redux/modules/biosReducer';
+import { changeThread } from 'redux/modules/contactReducer';
 import config from '../../config';
 import selector from './selector';
 import './styles.css';
@@ -53,6 +54,7 @@ class Desktop extends Component {
     this.onStartBiosAnimation = this.onStartBiosAnimation.bind(this);
     this.onRenderBiosLoading = this.onRenderBiosLoading.bind(this);
     this.onFinishBiosLoading = this.onFinishBiosLoading.bind(this);
+    this.onClickThread = this.onClickThread.bind(this);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
@@ -91,6 +93,10 @@ class Desktop extends Component {
 
   onFinishBiosLoading() {
     this.props.dispatch(finishBiosLoading());
+  }
+
+  onClickThread(title) {
+    this.props.dispatch(changeThread(title));
   }
 
   renderWindows() {
@@ -146,6 +152,8 @@ class Desktop extends Component {
               id={key}
               title={win.get('title')}
               x={win.get('x')} y={win.get('y')} z={zIndex++}
+              data={this.props.contact}
+              onClickThread={this.onClickThread}
               onClickLink={this.onChangeRoute}
               onClickClose={this.onCloseWindow}
             />
@@ -284,6 +292,7 @@ Desktop.propTypes = {
   travel: IPropTypes.list,
   connectDropTarget: PropTypes.func,
   bios: IPropTypes.map,
+  contact: IPropTypes.map,
   renderDesktop: PropTypes.func,
 };
 

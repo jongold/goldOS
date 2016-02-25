@@ -8,6 +8,7 @@ const momentify = evolve({
 
 const biosSelector = (state) => state.get('bios');
 const bookSelector = (state) => state.get('books');
+const contactSelector = (state) => state.get('contact');
 const podcastSelector = (state) => state.get('podcasts');
 const windowsSelector = (state) => state.get('windows');
 const travelSelector = (state) => state.get('travel');
@@ -23,13 +24,14 @@ const habitsSelector = createSelector(
 export default createSelector(
   biosSelector,
   bookSelector,
+  contactSelector,
   podcastSelector,
   windowsSelector,
   habitsSelector,
   travelSelector,
   paramsSelector,
-  (bios, books, podcasts, windows, habits, travel, params) => {
+  (bios, books, contact, podcasts, windows, habits, travel, params) => {
     const renderDesktop = isNil(prop('windowTitle', params)) && !bios.get('finishedLoading');
-    return ({ bios, books, podcasts, windows, habits, travel, renderDesktop });
+    return ({ bios, books, contact, podcasts, windows, habits, travel, renderDesktop });
   }
 );
