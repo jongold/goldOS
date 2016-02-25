@@ -24,6 +24,21 @@ body {
   background: black;
 }
 
+@media (max-width: 400px) {
+  body::after {
+    content: 'Hello mobile friend. This site looks bad on mobile. I do love you, I promise. —@jongold';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: var(--space-2);
+    background: var(--gold);
+    color: var(--white);
+  }
+}
+
 body::before{
   content:" ";
   display:block;
