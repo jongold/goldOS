@@ -242,13 +242,13 @@ class Desktop extends Component {
       >
         <Helmet title={ title || 'Desktop' } />
         <div className="bg-gold-dark white h6 absolute top-0 left-0 right-0 py1 flex">
-          <div className="bold px2">λ</div>
-          <div className="bold px2">{ title || 'goldOS' }</div>
-          <div className="px2">File</div>
-          <div className="px2">Edit</div>
-          <div className="px2">View</div>
-          <div className="px2">Window</div>
-          <div className="px2 relative">Help</div>
+          <div className="cu-not-allowed bold px2">λ</div>
+          <div className="cu-not-allowed bold px2">{ title || 'goldOS' }</div>
+          <div className="cu-not-allowed px2">File</div>
+          <div className="cu-not-allowed px2">Edit</div>
+          <div className="cu-not-allowed px2">View</div>
+          <div className="cu-not-allowed px2">Window</div>
+          <div className="cu-not-allowed px2 relative">Help</div>
           {/*   <div className="absolute" style={{ */}
           {/*     background: '#B49655', */}
           {/*     left: 0, */}
