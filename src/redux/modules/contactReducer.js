@@ -31,7 +31,7 @@ const initialState = fromJS({
         { text: 'Hey Jon, nice beard! We’d like to pay you money to make some internet.' },
         { text: 'Rad, I’m listening!', me: true },
         { text: 'Awesome! So you’re a designer?' },
-        { text: 'Yup! I can do everything from UX to visual design; tending to be happiest in fast-moving product design roles.' },
+        { text: 'Yup! I can do everything from UX to visual design; tending to be happiest in fast-moving product design roles.', me: true },
         { text: 'And code? What technologies do you use?' },
         { text: 'As of 2016 I’m very, very fast with React. I can also work on projects in Meteor and Ember. I’m not taking on backend projects, or any WordPress / Angular at the moment. ', me: true },
         { text: 'Do you do design or development in isolation?' },
