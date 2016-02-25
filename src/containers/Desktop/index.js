@@ -200,7 +200,7 @@ class Desktop extends Component {
       'Bookshelf',
       'Habits',
       'Podcasts',
-      'Speaking',
+      // 'Speaking',
       'Contact',
     ];
 
