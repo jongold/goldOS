@@ -1,0 +1,23 @@
+{
+  "apps": [
+    {
+      "name": "start-prod",
+      "script": "node bin/server.js",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "production",
+        "PORT": 4567,
+        "APIPORT": 3030
+      }
+    },
+    {
+      "name": "start-prod-api",
+      "script": "node bin/api.js",
+      "env": {
+        "NODE_PATH": "./api",
+        "NODE_ENV": "production",
+        "APIPORT": 3030
+      }
+    }
+  ]
+}
