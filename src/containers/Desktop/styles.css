@@ -25,7 +25,7 @@ body {
 }
 
 .cu-custom {
-  cursor: url('/cursor.png') 10 10, default;
+  cursor: url('/cursor.png'), default;
 }
 
 .blink {
