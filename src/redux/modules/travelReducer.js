@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 const initialState = fromJS([
-  { name: 'Australia', current: true },
+  { name: 'Australia' },
   { name: 'Denmark' },
   { name: 'France' },
   { name: 'Germany' },
@@ -13,8 +13,9 @@ const initialState = fromJS([
   { name: 'United Kingdom' },
   { name: 'United States of America',
     states: [
-      { name: 'California' },
+      { name: 'California', current: true },
       { name: 'Florida' },
+      { name: 'Hawaii' },
       { name: 'Illinois' },
       { name: 'Nevada' },
       { name: 'New York' },
