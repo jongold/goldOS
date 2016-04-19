@@ -20,7 +20,7 @@ const store = createStore(history, client, window.__data);
 
 history.listen(location => {
   if (window._gs) {
-    _gs('track');
+    _gs('track', location.pathname);
   }
 });
 
