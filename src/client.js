@@ -18,6 +18,12 @@ const history = useScroll(() => browserHistory)();
 const dest = document.getElementById('content');
 const store = createStore(history, client, window.__data);
 
+history.listen(location => {
+  if (window._gs) {
+    _gs('track');
+  }
+});
+
 function initSocket() {
   const socket = io('', { path: '/ws' });
   socket.on('news', (data) => {

@@ -28,6 +28,18 @@ export default class Html extends Component {
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
+    const gosquared = () => {
+      return {
+        __html: `!function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+
+          _gs('GSN-738889-F', false);
+        </script>`,
+      };
+    };
+
     return (
       <html lang="en-us">
         <head>
@@ -44,16 +56,18 @@ export default class Html extends Component {
 
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, i) =>
-            <link href={assets.styles[style]} key={i} media="screen, projection" rel="stylesheet" type="text/css"/>
+            <link href={assets.styles[style]} key={i} media="screen, projection" rel="stylesheet" type="text/css" />
           )}
 
           {/* resolves the initial style flash (flicker) on page load in development mode */}
-          { emptyKeys(assets.styles) ? <style dangerouslySetInnerHTML={{ __html: require('containers/Desktop/styles.css') }}/> : null }
+          { emptyKeys(assets.styles) ? <style dangerouslySetInnerHTML={{ __html: require('containers/Desktop/styles.css') }} /> : null }
+
+          <script dangerouslySetInnerHTML={ gosquared() } />
         </head>
         <body className="overflow-hidden">
-          <div id="content" dangerouslySetInnerHTML={{ __html: content }}/>
-          <script dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }} charSet="UTF-8"/>
-          <script src={assets.javascript.main} charSet="UTF-8"/>
+          <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
+          <script dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }} charSet="UTF-8" />
+          <script src={assets.javascript.main} charSet="UTF-8" />
         </body>
       </html>
     );
