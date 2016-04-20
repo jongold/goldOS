@@ -9,17 +9,19 @@ const Book = ({ item }) => {
 
   return (
     <div className="mr2 mb2 relative">
-      <svg
-        width={width}
-        height={height}
-        viewBox={viewBox}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path className="fill-gold" d={d} />
-      </svg>
-      <span className="absolute h6 white left-0 right-0 center mt3">
-        {item.get('title')}
-      </span>
+      <a href={item.get('url')}>
+        <svg
+          width={width}
+          height={height}
+          viewBox={viewBox}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path className="fill-gold" d={d} />
+        </svg>
+        <span className="absolute h6 white left-0 right-0 center mt3">
+          {item.get('title')}
+        </span>
+      </a>
     </div>
   );
 };
