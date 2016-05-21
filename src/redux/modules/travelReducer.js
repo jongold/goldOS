@@ -10,10 +10,10 @@ const initialState = fromJS([
   { name: 'Portugal' },
   { name: 'Sweden' },
   { name: 'United Arab Emirates' },
-  { name: 'United Kingdom' },
+  { name: 'United Kingdom', current: true },
   { name: 'United States of America',
     states: [
-      { name: 'California', current: true },
+      { name: 'California' },
       { name: 'Florida' },
       { name: 'Hawaii' },
       { name: 'Illinois' },
