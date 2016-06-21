@@ -10,11 +10,13 @@ export default function Welcome({ onClickLink }) {
         London but <Link handleClick={onClickLink} href="/Hello World">usually travelling</Link>. My favourite emojis are 🙏, 💞 and 👽.
       </p>
 
-      <p>I’m in love with the convergence of design, technology, AI &amp; good vibes, and <span className="blink">I’m looking for work</span> in London or San Francisco working on algorithmic design systems, prototyping &amp;&amp; / ||  design tooling.</p>
+      {/* <p>I’m in love with the convergence of design, technology, AI &amp; good vibes, and <span className="blink">I’m looking for work</span> in London or San Francisco working on algorithmic design systems, prototyping &amp;&amp; / ||  design tooling.</p> */}
 
       <p>Most recently I worked on an intelligent typography brain at <a href="http://thegrid.io">The Grid</a>; before that I made a lot of internet at <a href="http://makeshift.io">Makeshift</a> (where I started <a href="http://hiremyfriend.io">Hire My Friend</a>), Sidekick Studios, Evently &amp; Prismatic.</p>
 
-      <p><Link href={"/Contact"} handleClick={onClickLink}>Hire me</Link>, or engage with my personal brand on <a href="http://twitter.com/jongold">Twitter</a>.</p>
+      <p>You might enjoy some recent essays I’ve written about <a href="http://www.jon.gold/2016/05/robot-design-school">AI typography</a> and <a href="http://www.jon.gold/2016/06/declarative-design-tools/">experimental design tooling</a></p>
+
+      <p><Link href={"/Contact"} handleClick={onClickLink}>Say hi</Link>, or engage with my personal brand on <a href="http://twitter.com/jongold">Twitter</a>.</p>
 
       <p>This site was built as an experiment with React, Redux, Immutable.js &amp; Basscss in February 2016.</p>
     </div>
