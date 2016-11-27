@@ -201,7 +201,7 @@ class Desktop extends Component {
       'Habits',
       'Podcasts',
       // 'Speaking',
-      'Contact',
+      //'Contact',
     ];
 
     return (
