@@ -61,7 +61,7 @@ class BootSequence extends Component {
         <div className="console-text h6 pre mb4">
           { logo }
           <br />
-          <p>Copyright (C) 1989-2016, Jon Gold</p>
+          <p>Copyright (C) 1989-2017, Jon Gold</p>
           <p>“I think it’s extraordinarily important that<br />
             we in computer science keep fun in computing”<br />
             — Alan J. Perlis</p>
